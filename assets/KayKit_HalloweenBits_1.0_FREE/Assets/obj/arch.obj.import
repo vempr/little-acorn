@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dkjdb5e24copg"
+path="res://.godot/imported/arch.obj-22298d5b6f9f11a7334314496d1e6a4a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/arch.obj-22298d5b6f9f11a7334314496d1e6a4a.mesh"]
+
+source_file="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/arch.obj"
+dest_files=["res://.godot/imported/arch.obj-22298d5b6f9f11a7334314496d1e6a4a.mesh", "res://.godot/imported/arch.obj-22298d5b6f9f11a7334314496d1e6a4a.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

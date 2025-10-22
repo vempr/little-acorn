@@ -1,0 +1,125 @@
+[gd_scene load_steps=16 format=3 uid="uid://b1isak8jbqx4p"]
+
+[ext_resource type="Script" uid="uid://p8fnbi0pe5ju" path="res://scripts/deco/tree.gd" id="1_puo7d"]
+[ext_resource type="ArrayMesh" uid="uid://b45rkw8iyrc8i" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/tree_dead_large.obj" id="2_8jcfx"]
+[ext_resource type="ArrayMesh" uid="uid://ur1vimbhu8hc" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/tree_dead_large_decorated.obj" id="3_7nhoo"]
+[ext_resource type="ArrayMesh" uid="uid://c3urdwvn12bx0" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/tree_dead_medium.obj" id="4_mrlm3"]
+[ext_resource type="ArrayMesh" uid="uid://biictvvft6n4r" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/tree_pine_orange_large.obj" id="6_22kfd"]
+[ext_resource type="ArrayMesh" uid="uid://c66tdsgjmhcud" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/tree_pine_orange_medium.obj" id="7_fbiq2"]
+[ext_resource type="ArrayMesh" uid="uid://mpc2t40fgogs" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/tree_pine_yellow_large.obj" id="9_rrv43"]
+[ext_resource type="ArrayMesh" uid="uid://cd0binjblugs3" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/tree_pine_yellow_medium.obj" id="10_6yqva"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8jcfx"]
+size = Vector3(0.405762, 1, 0.384079)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7nhoo"]
+size = Vector3(0.391174, 1, 0.388062)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mrlm3"]
+size = Vector3(0.431641, 1, 0.449219)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u24ij"]
+size = Vector3(0.811646, 1, 0.811035)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fomd0"]
+size = Vector3(0.669434, 1, 0.680908)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71ml7"]
+size = Vector3(0.760498, 1, 0.807007)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mbktc"]
+size = Vector3(0.692322, 1, 0.683105)
+
+[node name="Tree" type="Node3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("1_puo7d")
+
+[node name="TreeDeadLarge" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = ExtResource("2_8jcfx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TreeDeadLarge"]
+
+[node name="TdlCS" type="CollisionShape3D" parent="TreeDeadLarge/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266113, 0, -5.34058e-05)
+shape = SubResource("BoxShape3D_8jcfx")
+disabled = true
+
+[node name="TreeDeadLargeDecorated" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+visible = false
+mesh = ExtResource("3_7nhoo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TreeDeadLargeDecorated"]
+
+[node name="TdldCS" type="CollisionShape3D" parent="TreeDeadLargeDecorated/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0204163, 0, -0.00421143)
+shape = SubResource("BoxShape3D_7nhoo")
+disabled = true
+
+[node name="TreeDeadMedium" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+visible = false
+mesh = ExtResource("4_mrlm3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TreeDeadMedium"]
+
+[node name="TdmCS" type="CollisionShape3D" parent="TreeDeadMedium/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000976562, 0, 0.00292969)
+shape = SubResource("BoxShape3D_mrlm3")
+disabled = true
+
+[node name="TreePineOrangeLarge" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+visible = false
+mesh = ExtResource("6_22kfd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TreePineOrangeLarge"]
+
+[node name="TpolCS" type="CollisionShape3D" parent="TreePineOrangeLarge/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0285034, 0, -0.00561523)
+shape = SubResource("BoxShape3D_u24ij")
+disabled = true
+
+[node name="TreePineOrangeMedium" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+visible = false
+mesh = ExtResource("7_fbiq2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TreePineOrangeMedium"]
+
+[node name="TpomCS" type="CollisionShape3D" parent="TreePineOrangeMedium/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0202637, 0, -0.00769043)
+shape = SubResource("BoxShape3D_fomd0")
+disabled = true
+
+[node name="TreePineYellowLarge" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+visible = false
+mesh = ExtResource("9_rrv43")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TreePineYellowLarge"]
+
+[node name="TpylCS" type="CollisionShape3D" parent="TreePineYellowLarge/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0360107, 0, -0.00714111)
+shape = SubResource("BoxShape3D_71ml7")
+disabled = true
+
+[node name="TreePineYellowMedium" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+visible = false
+mesh = ExtResource("10_6yqva")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TreePineYellowMedium"]
+
+[node name="TpymCS" type="CollisionShape3D" parent="TreePineYellowMedium/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015564, 0, 0.00708008)
+shape = SubResource("BoxShape3D_mbktc")
+disabled = true

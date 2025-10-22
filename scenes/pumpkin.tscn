@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3 uid="uid://ckl18up56cyo3"]
+
+[ext_resource type="Script" uid="uid://ceyx8x8ac06k3" path="res://scripts/pumpkin.gd" id="1_qdl88"]
+[ext_resource type="ArrayMesh" uid="uid://cyfm4vs4xerad" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/pumpkin_orange.obj" id="2_ch6vm"]
+[ext_resource type="ArrayMesh" uid="uid://b6ixest1ekfce" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/pumpkin_orange_jackolantern.obj" id="3_8p3yo"]
+[ext_resource type="ArrayMesh" uid="uid://vs56uslynjbn" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/pumpkin_orange_small.obj" id="4_2inn6"]
+[ext_resource type="ArrayMesh" uid="uid://chch8rppahem" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/pumpkin_yellow.obj" id="5_kanjq"]
+[ext_resource type="ArrayMesh" uid="uid://c8dnhhrhflnos" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/pumpkin_yellow_jackolantern.obj" id="6_4siox"]
+[ext_resource type="ArrayMesh" uid="uid://co2bq1fdooc4n" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/pumpkin_yellow_small.obj" id="7_wx4lb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wx4lb"]
+size = Vector3(0.50415, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnlu4"]
+size = Vector3(1.41309, 1.01746, 1.33105)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r4v7c"]
+size = Vector3(0.613525, 0.389709, 0.583984)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s1f5v"]
+size = Vector3(1, 0.532471, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qys4q"]
+size = Vector3(1.45874, 1, 1.33594)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ye8ba"]
+size = Vector3(0.616211, 0.413452, 0.614258)
+
+[node name="Pumpkin" type="Node3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("1_qdl88")
+
+[node name="PumpkinOrange" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = ExtResource("2_ch6vm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinOrange"]
+
+[node name="PoCS" type="CollisionShape3D" parent="PumpkinOrange/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.00848e-09, 0.290421, 0)
+shape = SubResource("BoxShape3D_wx4lb")
+disabled = true
+
+[node name="PumpkinOrangeJackolantern" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+mesh = ExtResource("3_8p3yo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinOrangeJackolantern"]
+
+[node name="PojCS" type="CollisionShape3D" parent="PumpkinOrangeJackolantern/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520081, -0.0214844)
+shape = SubResource("BoxShape3D_fnlu4")
+disabled = true
+
+[node name="PumpkinOrangeSmall" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+mesh = ExtResource("4_2inn6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinOrangeSmall"]
+
+[node name="PosCS" type="CollisionShape3D" parent="PumpkinOrangeSmall/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.201752, 0)
+shape = SubResource("BoxShape3D_r4v7c")
+disabled = true
+
+[node name="PumpkinYellow" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+mesh = ExtResource("5_kanjq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinYellow"]
+
+[node name="PyCS" type="CollisionShape3D" parent="PumpkinYellow/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265747, 0)
+shape = SubResource("BoxShape3D_s1f5v")
+disabled = true
+
+[node name="PumpkinYellowJackolantern" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+mesh = ExtResource("6_4siox")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinYellowJackolantern"]
+
+[node name="PyjCS" type="CollisionShape3D" parent="PumpkinYellowJackolantern/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.549774, 0)
+shape = SubResource("BoxShape3D_qys4q")
+disabled = true
+
+[node name="PumpkinYellowSmall" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+mesh = ExtResource("7_wx4lb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinYellowSmall"]
+
+[node name="PysCS" type="CollisionShape3D" parent="PumpkinYellowSmall/StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.202087, 0)
+shape = SubResource("BoxShape3D_ye8ba")
+disabled = true

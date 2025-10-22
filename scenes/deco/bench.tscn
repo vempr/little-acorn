@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcoi8ocufk4wm"]
+
+[ext_resource type="ArrayMesh" uid="uid://dh7caxwd6wmdt" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/bench.obj" id="1_ol4n6"]
+[ext_resource type="Script" uid="uid://dkfx6c1jbkmdn" path="res://scripts/deco/bench.gd" id="1_u74j8"]
+[ext_resource type="ArrayMesh" uid="uid://ctrpocv0j6jdb" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/bench_decorated.obj" id="2_0oijs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lpsly"]
+size = Vector3(1.92383, 1.76348, 0.677734)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u74j8"]
+size = Vector3(1.94678, 1.76348, 0.671875)
+
+[node name="Bench" type="Node3D"]
+script = ExtResource("1_u74j8")
+
+[node name="BenchBasic" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+visible = false
+mesh = ExtResource("1_ol4n6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BenchBasic"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BenchBasic/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013, 0.75759, -0.00268555)
+shape = SubResource("BoxShape3D_lpsly")
+
+[node name="BenchDecorated" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+visible = false
+mesh = ExtResource("2_0oijs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BenchDecorated"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BenchDecorated/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00299023, 0.75759, -0.00268555)
+shape = SubResource("BoxShape3D_u74j8")

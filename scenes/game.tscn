@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://iqf5ud4ib0kr"]
+[gd_scene load_steps=12 format=3 uid="uid://iqf5ud4ib0kr"]
 
 [ext_resource type="Script" uid="uid://brxuvhhgyqav1" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://5vkvd2nqcfdg" path="res://scenes/player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://ckl18up56cyo3" path="res://scenes/pumpkin.tscn" id="4_iywne"]
+[ext_resource type="PackedScene" uid="uid://dcoi8ocufk4wm" path="res://scenes/deco/bench.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://b1isak8jbqx4p" path="res://scenes/deco/tree.tscn" id="5_iywne"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -15,11 +18,15 @@ background_mode = 2
 sky = SubResource("Sky_yqjtg")
 tonemap_mode = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqjtg"]
+albedo_color = Color(0.02, 0.02, 0.02, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_uwrxv"]
-size = Vector2(10, 10)
+material = SubResource("StandardMaterial3D_yqjtg")
+size = Vector2(100, 100)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yqjtg"]
-points = PackedVector3Array(-5, 0, -5, -5, 0, 5, 5, 0, -5, 5, 0, 5)
+points = PackedVector3Array(-50, 0, -50, -50, 0, 50, 50, 0, -50, 50, 0, 50)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_uwrxv")
@@ -42,3 +49,15 @@ shape = SubResource("ConvexPolygonShape3D_yqjtg")
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
 top_level = true
+
+[node name="Bench" parent="." instance=ExtResource("4_lbhrr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1561, 0, 14.8207)
+
+[node name="Pumpkin" parent="." instance=ExtResource("4_iywne")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.11749, 0.006766, 1.50029)
+
+[node name="Tree" parent="." instance=ExtResource("5_iywne")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.90225, 1.10952, 8.39399)
+
+[node name="Tree2" parent="." instance=ExtResource("5_iywne")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.7916, 1.10952, -12.4048)
