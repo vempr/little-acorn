@@ -6,7 +6,7 @@ signal update_hud
 var mouse_sensitivity := 0.001
 var twist_input := 0.0
 var pitch_input := 0.0
-var move_force := 2000.0
+var move_force := 10000.0
 var can_open_shop := false
 
 
@@ -62,6 +62,8 @@ func _physics_process(delta: float) -> void:
 		var collider = %PickableCast.get_collider()
 		if collider:
 			var mesh = collider.get_parent()
+			if mesh.name == "Game":
+				return
 			var node_scene_instance = mesh.get_parent()
 			
 			if "pickable_type" in node_scene_instance:

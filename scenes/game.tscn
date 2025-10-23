@@ -1,7 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://iqf5ud4ib0kr"]
+[gd_scene load_steps=26 format=3 uid="uid://iqf5ud4ib0kr"]
 
 [ext_resource type="Script" uid="uid://brxuvhhgyqav1" path="res://scripts/game.gd" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://b1a5xi6sr0rd3" path="res://assets/LowPoly Environment Pack/Mounting_1.fbx" id="2_rysoc"]
 [ext_resource type="PackedScene" uid="uid://5vkvd2nqcfdg" path="res://scenes/player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://ddnq35km5i7ap" path="res://assets/LowPoly Environment Pack/Mounting_2.fbx" id="3_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://cxidsc30ue7fh" path="res://assets/LowPoly Environment Pack/Mounting_3.fbx" id="4_264po"]
 [ext_resource type="PackedScene" uid="uid://ckl18up56cyo3" path="res://scenes/pumpkin.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dcoi8ocufk4wm" path="res://scenes/deco/bench.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://b1isak8jbqx4p" path="res://scenes/deco/tree.tscn" id="5_iywne"]
@@ -16,8 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://bxwqi1t0ukbyu" path="res://scenes/pickable/candy.tscn" id="14_trtic"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+sky_top_color = Color(0.62, 0.3472, 0.351747, 1)
+sky_horizon_color = Color(1, 0.510823, 0.35662, 1)
+ground_bottom_color = Color(0.619608, 0.34902, 0.352941, 1)
+ground_horizon_color = Color(1, 0.509804, 0.356863, 1)
+sun_angle_max = 36.0
 
 [sub_resource type="Sky" id="Sky_yqjtg"]
 sky_material = SubResource("ProceduralSkyMaterial_uwrxv")
@@ -25,17 +31,32 @@ sky_material = SubResource("ProceduralSkyMaterial_uwrxv")
 [sub_resource type="Environment" id="Environment_lnu2h"]
 background_mode = 2
 sky = SubResource("Sky_yqjtg")
+sky_custom_fov = 164.5
+ambient_light_source = 3
+reflected_light_source = 2
 tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 0.4
+adjustment_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqjtg"]
 albedo_color = Color(0.26, 0.143, 0, 1)
+metallic = 0.1
+metallic_specular = 0.55
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.1
+emission_operator = 1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uwrxv"]
 material = SubResource("StandardMaterial3D_yqjtg")
-size = Vector2(100, 100)
+size = Vector2(110, 110)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yqjtg"]
 points = PackedVector3Array(-50, 0, -50, -50, 0, 50, 50, 0, -50, 50, 0, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_trtic"]
+size = Vector3(23.0684, 1, 0.563538)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vtaks"]
 size = Vector3(6.69116, 7.52539, 5.13785)
@@ -49,6 +70,7 @@ environment = SubResource("Environment_lnu2h")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
+sky_mode = 1
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_uwrxv")
@@ -57,6 +79,113 @@ mesh = SubResource("PlaneMesh_uwrxv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_yqjtg")
+
+[node name="WorldBorder" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(4.8, 0, 0, 0, 4.8, 0, 0, 0, 4.8, 0, 0, 49.3094)
+shape = SubResource("BoxShape3D_trtic")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(4.8, 0, 0, 0, 4.8, 0, 0, 0, 4.8, 0, 0, -49.309)
+shape = SubResource("BoxShape3D_trtic")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(-2.09815e-07, 0, 4.8, 0, 4.8, 0, -4.8, 0, -2.09815e-07, 48, 0, 0)
+shape = SubResource("BoxShape3D_trtic")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(-2.09815e-07, 0, 4.8, 0, 4.8, 0, -4.8, 0, -2.09815e-07, -48, 0, 0)
+shape = SubResource("BoxShape3D_trtic")
+
+[node name="Meshes" type="Node3D" parent="WorldBorder"]
+
+[node name="Mounting_1" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(1.43, 0, 0, 0, 1.565, 0, 0, 0, 1, 10.1128, 0, -54.7025)
+
+[node name="Mounting_5" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(-1.43, 0, -8.74228e-08, 0, 1.565, 0, 1.25015e-07, 0, -1, -20.2422, 0, -57.1461)
+
+[node name="Mounting_2" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(1.59, 0, 0, 0, 2.125, 0, 0, 0, 1, -30.3255, 0, -55.6523)
+
+[node name="Mounting_3" parent="WorldBorder/Meshes" instance=ExtResource("3_ssvqc")]
+transform = Transform3D(-4.37094e-08, -0.00677183, 2.23495, -2.96006e-10, 0.999977, 0.015135, -1, -6.77236e-15, -9.76927e-08, -9.0697, 0, -59.0275)
+
+[node name="Mounting_4" parent="WorldBorder/Meshes" instance=ExtResource("4_264po")]
+transform = Transform3D(-1.355, 0, -8.74228e-08, 0, 1.41, 0, 1.18458e-07, 0, -1, 31.746, 0, -51.8428)
+
+[node name="Mounting_6" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8827, 0, -54.8505)
+
+[node name="Mounting_7" parent="WorldBorder/Meshes" instance=ExtResource("3_ssvqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.24712, 0, -58.076)
+
+[node name="Mounting_8" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.5871, 0, -50.6904)
+
+[node name="Mounting_9" parent="WorldBorder/Meshes" instance=ExtResource("3_ssvqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.3516, 0, -37.6749)
+
+[node name="Mounting_10" parent="WorldBorder/Meshes" instance=ExtResource("4_264po")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.3618, 0, -29.1062)
+
+[node name="Mounting_11" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.2169, 0, -17.1377)
+
+[node name="Mounting_12" parent="WorldBorder/Meshes" instance=ExtResource("3_ssvqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.004, 0, 23.787)
+
+[node name="Mounting_13" parent="WorldBorder/Meshes" instance=ExtResource("3_ssvqc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 56.8704, 0, 6.91201)
+
+[node name="Mounting_14" parent="WorldBorder/Meshes" instance=ExtResource("4_264po")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 56.5326, 0.409302, -5.67791)
+
+[node name="Mounting_15" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.5789, 0, 36.5526)
+
+[node name="Mounting_16" parent="WorldBorder/Meshes" instance=ExtResource("4_264po")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 48.9058, 0, 45.1455)
+
+[node name="Mounting_17" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(-1.39, 0, -8.74228e-08, 0, 2.815, 0, 1.21518e-07, 0, -1, 32.8974, 0, 55.8944)
+
+[node name="Mounting_18" parent="WorldBorder/Meshes" instance=ExtResource("3_ssvqc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24.0835, 0.50415, 57.8914)
+
+[node name="Mounting_19" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.54001, 0, 55.0749)
+
+[node name="Mounting_20" parent="WorldBorder/Meshes" instance=ExtResource("4_264po")]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 17.255, 0, 52.5089)
+
+[node name="Mounting_21" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(1.035, 0, 0, 0, 2.4, 0, 0, 0, 1, 1.72054, 0, 55.6861)
+
+[node name="Mounting_22" parent="WorldBorder/Meshes" instance=ExtResource("4_264po")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.036, 0, 51.9849)
+
+[node name="Mounting_23" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.2576, 0, 45.9974)
+
+[node name="Mounting_24" parent="WorldBorder/Meshes" instance=ExtResource("4_264po")]
+transform = Transform3D(2.27169e-08, 0, -1.595, 0, 1.92, 0, 1.905, 0, 1.90202e-08, -50.8389, -1.27527, 23.1884)
+
+[node name="Mounting_25" parent="WorldBorder/Meshes" instance=ExtResource("3_ssvqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.6501, -0.00012207, -26.521)
+
+[node name="Mounting_26" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.1707, 0, -13.5424)
+
+[node name="Mounting_27" parent="WorldBorder/Meshes" instance=ExtResource("3_ssvqc")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -57.082, 0, -0.085)
+
+[node name="Mounting_28" parent="WorldBorder/Meshes" instance=ExtResource("2_rysoc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.7138, 0, -56.2921)
+
+[node name="Mounting_29" parent="WorldBorder/Meshes" instance=ExtResource("4_264po")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -55.6791, 0, -43.1474)
 
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
