@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7lon5y2hyqq0"]
+
+[ext_resource type="PackedScene" uid="uid://drgsomgf72mx3" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/chest_gold.glb" id="1_u7y7p"]
+
+[sub_resource type="Gradient" id="Gradient_yewq7"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0vs2n"]
+gradient = SubResource("Gradient_yewq7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u7y7p"]
+albedo_color = Color(0.45, 0.314325, 0.1485, 1)
+albedo_texture = SubResource("GradientTexture2D_0vs2n")
+
+[sub_resource type="Gradient" id="Gradient_u7y7p"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yewq7"]
+gradient = SubResource("Gradient_u7y7p")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yewq7"]
+albedo_color = Color(0.5, 0.30875, 0.075, 1)
+albedo_texture = SubResource("GradientTexture2D_yewq7")
+
+[node name="Chest" instance=ExtResource("1_u7y7p")]
+
+[node name="chest_gold" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_u7y7p")
+
+[node name="chest_gold_lid" parent="chest_gold" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_yewq7")

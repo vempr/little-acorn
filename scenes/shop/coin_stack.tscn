@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1tur5sdxgda5"]
+
+[ext_resource type="PackedScene" uid="uid://bq1obp0oya5eq" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/coin_stack.glb" id="1_g4jnf"]
+
+[sub_resource type="Gradient" id="Gradient_g4jnf"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6m6mi"]
+gradient = SubResource("Gradient_g4jnf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h3i1e"]
+albedo_color = Color(1, 0.75, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_6m6mi")
+
+[node name="CoinStack" instance=ExtResource("1_g4jnf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="coin_stack_large" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h3i1e")

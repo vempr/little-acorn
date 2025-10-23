@@ -1,10 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://iqf5ud4ib0kr"]
+[gd_scene load_steps=17 format=3 uid="uid://iqf5ud4ib0kr"]
 
 [ext_resource type="Script" uid="uid://brxuvhhgyqav1" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://5vkvd2nqcfdg" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ckl18up56cyo3" path="res://scenes/pumpkin.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dcoi8ocufk4wm" path="res://scenes/deco/bench.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://b1isak8jbqx4p" path="res://scenes/deco/tree.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://b7lon5y2hyqq0" path="res://scenes/shop/chest.tscn" id="6_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://corlvwy7juxu0" path="res://scenes/shop/plate_food.tscn" id="6_gee14"]
+[ext_resource type="PackedScene" uid="uid://bujtaeao8xq41" path="res://scenes/shopkeeper.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://drxb1v7dbinsw" path="res://scenes/shop/table.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://c1tur5sdxgda5" path="res://scenes/shop/coin_stack.tscn" id="8_vtaks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -19,7 +24,7 @@ sky = SubResource("Sky_yqjtg")
 tonemap_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqjtg"]
-albedo_color = Color(0.02, 0.02, 0.02, 1)
+albedo_color = Color(0.26, 0.143, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uwrxv"]
 material = SubResource("StandardMaterial3D_yqjtg")
@@ -54,10 +59,29 @@ top_level = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1561, 0, 14.8207)
 
 [node name="Pumpkin" parent="." instance=ExtResource("4_iywne")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.11749, 0.006766, 1.50029)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.117, 0, 1.5)
 
-[node name="Tree" parent="." instance=ExtResource("5_iywne")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.90225, 1.10952, 8.39399)
+[node name="Shop" type="Node3D" parent="."]
 
-[node name="Tree2" parent="." instance=ExtResource("5_iywne")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.7916, 1.10952, -12.4048)
+[node name="Chest" parent="Shop" instance=ExtResource("6_0tnpc")]
+transform = Transform3D(0.969392, 0.000225602, 0.245518, 0.00337493, 0.999893, -0.0142441, -0.245495, 0.0146368, 0.969287, -30.9317, 1.45334, -10.3608)
+
+[node name="CoinStack" parent="Shop" instance=ExtResource("8_vtaks")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -31.2137, 1.48428, -8.91187)
+
+[node name="PlateFood" parent="Shop" instance=ExtResource("6_gee14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5946, 1.44678, -9.20398)
+
+[node name="Shopkeeper" parent="Shop" instance=ExtResource("6_p57ef")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -30.5318, 2.23994e-05, -12.2354)
+
+[node name="Table" parent="Shop" instance=ExtResource("7_u5sy4")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -30.5043, 0, -9.85371)
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="Tree" parent="Trees" instance=ExtResource("5_iywne")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.902, 0, 8.394)
+
+[node name="Tree2" parent="Trees" instance=ExtResource("5_iywne")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.792, 0, -12.405)

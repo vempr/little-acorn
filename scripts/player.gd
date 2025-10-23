@@ -11,10 +11,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var input = Vector3.ZERO
-	input.x = Input.get_axis("left", "right")
-	input.z = Input.get_axis("forward", "backward")
-	apply_central_force(%TwistPivot.basis * input * move_force * delta)
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		var input = Vector3.ZERO
+		input.x = Input.get_axis("left", "right")
+		input.z = Input.get_axis("forward", "backward")
+		
+		if input.length() > 0:
+			input = input.normalized()
+		apply_central_force(%TwistPivot.basis * input * move_force * delta)
 	
 	# JUMPING IS SCRAPPED:
 	# when RigidBody3D jumps and collides with body while holding,
@@ -25,6 +29,7 @@ func _physics_process(delta: float) -> void:
 	# if Input.is_action_just_pressed("jump") and is_grounded:
 		# apply_central_impulse(Vector3.UP * jump_force)
 	
+	%SquirrelMesh.rotation.y = %TwistPivot.rotation.y + PI
 	%TwistPivot.rotate_y(twist_input)
 	%PitchPivot.rotate_x(pitch_input)
 	%PitchPivot.rotation.x = clamp(

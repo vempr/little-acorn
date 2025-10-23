@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://corlvwy7juxu0"]
+
+[ext_resource type="PackedScene" uid="uid://cvt64w8yxayr5" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/plate_food.glb" id="1_quuem"]
+
+[sub_resource type="Gradient" id="Gradient_quuem"]
+colors = PackedColorArray(0, 0.4, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iyyxx"]
+gradient = SubResource("Gradient_quuem")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u2jjn"]
+albedo_color = Color(0.396078, 0.262745, 0.129412, 1)
+albedo_texture = SubResource("GradientTexture2D_iyyxx")
+
+[node name="PlateFood" instance=ExtResource("1_quuem")]
+
+[node name="plate_food_A" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_u2jjn")

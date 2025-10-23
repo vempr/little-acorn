@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cclmnu35wqsjr"
+path="res://.godot/imported/candy.vox.obj-934b3aa13126db4f61a3be36b412c4cf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/candy.vox.obj-934b3aa13126db4f61a3be36b412c4cf.mesh"]
+
+source_file="res://assets/Voxel_Animal_Asset_Pack/Voxel_Animal_Asset_Pack/Collectibles/candy/candy.vox.obj"
+dest_files=["res://.godot/imported/candy.vox.obj-934b3aa13126db4f61a3be36b412c4cf.mesh", "res://.godot/imported/candy.vox.obj-934b3aa13126db4f61a3be36b412c4cf.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

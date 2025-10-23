@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch3gl1e7hb8wm"]
+
+[ext_resource type="ArrayMesh" uid="uid://c7q1boujeopuk" path="res://assets/Acorn/acorn.obj" id="1_xvxol"]
+
+[sub_resource type="Gradient" id="Gradient_xvxol"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lx36b"]
+gradient = SubResource("Gradient_xvxol")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lx36b"]
+albedo_color = Color(0.603922, 0.341176, 0.0588235, 1)
+albedo_texture = SubResource("GradientTexture2D_lx36b")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xvxol"]
+radius = 0.687452
+height = 1.91418
+
+[node name="Acorn" type="Node3D"]
+
+[node name="AcornMesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_xvxol")
+surface_material_override/0 = SubResource("StandardMaterial3D_lx36b")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="AcornMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AcornMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0518188, -0.189758, 0)
+shape = SubResource("CapsuleShape3D_xvxol")
