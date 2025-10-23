@@ -38,3 +38,8 @@ mesh = ExtResource("2_g2els")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00118065, 0.246979, -0.0123329)
 shape = SubResource("BoxShape3D_g2els")
+
+[node name="PickableCast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.1, 1.49012e-08)
+target_position = Vector3(0, 0, 1)

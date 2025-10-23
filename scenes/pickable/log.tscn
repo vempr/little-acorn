@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c460qfwwm74jo"]
+
+[ext_resource type="Script" uid="uid://cg5f0vnc5vyx4" path="res://scripts/pickable/log.gd" id="1_k0uux"]
+[ext_resource type="PackedScene" uid="uid://cjqv2gryxjvt6" path="res://assets/LowPoly Environment Pack/Log_1.fbx" id="1_spugk"]
+
+[node name="Log" type="Node3D"]
+script = ExtResource("1_k0uux")
+
+[node name="PreviewMesh" parent="." instance=ExtResource("1_spugk")]
+unique_name_in_owner = true

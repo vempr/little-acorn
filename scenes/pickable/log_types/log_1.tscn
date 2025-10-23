@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk46h028ukld2"]
+
+[ext_resource type="PackedScene" uid="uid://cjqv2gryxjvt6" path="res://assets/LowPoly Environment Pack/Log_1.fbx" id="1_brvp5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gu81v"]
+size = Vector3(0.105469, 0.0947266, 1.30078)
+
+[node name="Log_1" instance=ExtResource("1_brvp5")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Log_1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Log_1/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.84217e-14, 0, -2.84217e-14, 1, 0.0112305, 0.0474854, 0.0278321)
+shape = SubResource("BoxShape3D_gu81v")

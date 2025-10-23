@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxwqi1t0ukbyu"]
+
+[ext_resource type="Script" uid="uid://dst3acwrivms7" path="res://scripts/pickable/candy.gd" id="1_jtxuw"]
+[ext_resource type="ArrayMesh" uid="uid://cclmnu35wqsjr" path="res://assets/Voxel_Animal_Asset_Pack/Voxel_Animal_Asset_Pack/Collectibles/candy/candy.vox.obj" id="1_r7iyc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jtxuw"]
+size = Vector3(0.779541, 1.54016, 0.318115)
+
+[node name="Candy" type="Node3D"]
+script = ExtResource("1_jtxuw")
+
+[node name="Candy_vox" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0.0860459, 0)
+mesh = ExtResource("1_r7iyc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Candy_vox"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Candy_vox/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00231934, 0.804382, -0.0152588)
+shape = SubResource("BoxShape3D_jtxuw")

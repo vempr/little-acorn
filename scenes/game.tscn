@@ -1,15 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://iqf5ud4ib0kr"]
+[gd_scene load_steps=22 format=3 uid="uid://iqf5ud4ib0kr"]
 
 [ext_resource type="Script" uid="uid://brxuvhhgyqav1" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://5vkvd2nqcfdg" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ckl18up56cyo3" path="res://scenes/pumpkin.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dcoi8ocufk4wm" path="res://scenes/deco/bench.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://b1isak8jbqx4p" path="res://scenes/deco/tree.tscn" id="5_iywne"]
+[ext_resource type="Script" uid="uid://ddidedg51hv0r" path="res://scripts/shop.gd" id="5_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://b7lon5y2hyqq0" path="res://scenes/shop/chest.tscn" id="6_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://corlvwy7juxu0" path="res://scenes/shop/plate_food.tscn" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://bujtaeao8xq41" path="res://scenes/shopkeeper.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://drxb1v7dbinsw" path="res://scenes/shop/table.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://c1tur5sdxgda5" path="res://scenes/shop/coin_stack.tscn" id="8_vtaks"]
+[ext_resource type="Script" uid="uid://dep00p08am4pj" path="res://scripts/hud.gd" id="12_dinhu"]
+[ext_resource type="PackedScene" uid="uid://c460qfwwm74jo" path="res://scenes/pickable/log.tscn" id="13_kvuet"]
+[ext_resource type="PackedScene" uid="uid://bxwqi1t0ukbyu" path="res://scenes/pickable/candy.tscn" id="14_trtic"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -32,6 +36,9 @@ size = Vector2(100, 100)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yqjtg"]
 points = PackedVector3Array(-50, 0, -50, -50, 0, 50, 50, 0, -50, 50, 0, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vtaks"]
+size = Vector3(6.69116, 7.52539, 5.13785)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_uwrxv")
@@ -56,12 +63,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
 top_level = true
 
 [node name="Bench" parent="." instance=ExtResource("4_lbhrr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1561, 0, 14.8207)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1684, 0, 8.64101)
 
 [node name="Pumpkin" parent="." instance=ExtResource("4_iywne")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.117, 0, 1.5)
 
 [node name="Shop" type="Node3D" parent="."]
+script = ExtResource("5_kvpfn")
 
 [node name="Chest" parent="Shop" instance=ExtResource("6_0tnpc")]
 transform = Transform3D(0.969392, 0.000225602, 0.245518, 0.00337493, 0.999893, -0.0142441, -0.245495, 0.0146368, 0.969287, -30.9317, 1.45334, -10.3608)
@@ -78,6 +86,12 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -30.5318, 2.23994e-05, -12.23
 [node name="Table" parent="Shop" instance=ExtResource("7_u5sy4")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -30.5043, 0, -9.85371)
 
+[node name="BuyArea" type="Area3D" parent="Shop"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/BuyArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.421, 3.2627, -8.76834)
+shape = SubResource("BoxShape3D_vtaks")
+
 [node name="Trees" type="Node3D" parent="."]
 
 [node name="Tree" parent="Trees" instance=ExtResource("5_iywne")]
@@ -85,3 +99,69 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.902, 0, 8.394)
 
 [node name="Tree2" parent="Trees" instance=ExtResource("5_iywne")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.792, 0, -12.405)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("12_dinhu")
+
+[node name="Label" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 111
+text = "logs: 0
+candy: 0"
+
+[node name="OpenShopLabel" type="Label" parent="HUD"]
+visible = false
+offset_left = 207.0
+offset_top = 136.0
+offset_right = 542.0
+offset_bottom = 288.0
+theme_override_font_sizes/font_size = 111
+text = "you can open shop"
+
+[node name="Shop" type="Label" parent="HUD"]
+visible = false
+offset_left = 205.0
+offset_top = 310.0
+offset_right = 1212.0
+offset_bottom = 462.0
+theme_override_font_sizes/font_size = 111
+text = "ooo cool stuff in shop"
+
+[node name="Logs" type="Node3D" parent="."]
+
+[node name="Log" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67604, 0.0198826, 7.86084)
+
+[node name="Log2" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74039, 0.0198521, 8.36938)
+
+[node name="Log3" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28407, 0.0199131, 23.4667)
+
+[node name="Log4" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.38334, 0.0198826, 18.0397)
+
+[node name="Log5" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.938091, 0.0198521, 14.238)
+
+[node name="Candies" type="Node3D" parent="."]
+
+[node name="Candy" parent="Candies" instance=ExtResource("14_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.85774, 0.039878, 10.3563)
+
+[node name="Candy2" parent="Candies" instance=ExtResource("14_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.22799, 0.0400001, 16.696)
+
+[node name="Candy3" parent="Candies" instance=ExtResource("14_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7773, 0.0400001, 17.3456)
+
+[node name="Candy5" parent="Candies" instance=ExtResource("14_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.31565, 0.0400001, 12.5524)
+
+[connection signal="trigger_shop" from="Player" to="HUD" method="_on_player_trigger_shop"]
+[connection signal="update_hud" from="Player" to="HUD" method="_on_player_update_hud"]
+[connection signal="update_shop_visibility" from="Shop" to="Player" method="_on_shop_update_shop_visibility"]
+[connection signal="update_shop_visibility" from="Shop" to="HUD" method="_on_shop_update_shop_visibility"]
+[connection signal="body_entered" from="Shop/BuyArea" to="Shop" method="_on_buy_area_body_entered"]
+[connection signal="body_exited" from="Shop/BuyArea" to="Shop" method="_on_buy_area_body_exited"]

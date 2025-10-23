@@ -36,3 +36,8 @@ mesh = ExtResource("2_0oijs")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BenchDecorated/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00299023, 0.75759, -0.00268555)
 shape = SubResource("BoxShape3D_u74j8")
+
+[node name="BenchPreview" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = ExtResource("1_ol4n6")

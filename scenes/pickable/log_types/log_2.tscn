@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4gx1oahf10uy"]
+
+[ext_resource type="PackedScene" uid="uid://vaprtmro7qcd" path="res://assets/LowPoly Environment Pack/Log_2.fbx" id="1_u5dq3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mjv6r"]
+size = Vector3(0.0421448, 0.0249082, 0.469177)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g50xq"]
+size = Vector3(0.0253677, 0.0249082, 0.381561)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ldpa7"]
+size = Vector3(0.0415344, 0.0299407, 0.243103)
+
+[node name="Log_2" instance=ExtResource("1_u5dq3")]
+
+[node name="RigidBody3D" type="StaticBody3D" parent="Log_2" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Log_2/RigidBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0170746, 0.0247357, 0.153046)
+shape = SubResource("BoxShape3D_mjv6r")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Log_2/RigidBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023098, 0.0247357, 0.109238)
+shape = SubResource("BoxShape3D_g50xq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Log_2/RigidBody3D" index="2"]
+transform = Transform3D(0.901832, 1.88871e-08, 0.432086, -1.88871e-08, 1, -4.29104e-09, -0.432086, -4.29104e-09, 0.901832, -0.0312502, 0.01828, -0.147845)
+shape = SubResource("BoxShape3D_ldpa7")
