@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://daamlmbgoqdq2"]
+
+[ext_resource type="ArrayMesh" uid="uid://c7q1boujeopuk" path="res://assets/Acorn/acorn.obj" id="1_71l2r"]
+[ext_resource type="Script" uid="uid://dg3arcimosesb" path="res://scripts/pickable/acorn.gd" id="1_lplt3"]
+
+[sub_resource type="Gradient" id="Gradient_71l2r"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lplt3"]
+gradient = SubResource("Gradient_71l2r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppxhe"]
+albedo_color = Color(0.58, 0.3857, 0.1914, 1)
+albedo_texture = SubResource("GradientTexture2D_lplt3")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_71l2r"]
+radius = 0.817238
+height = 2.09354
+
+[node name="Acorn" type="RigidBody3D"]
+script = ExtResource("1_lplt3")
+
+[node name="AcornMesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_71l2r")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ppxhe")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.110626, 0)
+shape = SubResource("CapsuleShape3D_71l2r")

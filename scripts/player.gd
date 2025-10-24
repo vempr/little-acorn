@@ -1,13 +1,15 @@
 extends RigidBody3D
 
-signal trigger_shop
+signal buy_acorn
 signal update_hud
 
 var mouse_sensitivity := 0.001
 var twist_input := 0.0
 var pitch_input := 0.0
-var move_force := 10000.0
+var move_force := 4000.0
 var can_open_shop := false
+var is_holding_acorn := false
+var acorn
 
 
 func _ready() -> void:
@@ -56,14 +58,33 @@ func _physics_process(delta: float) -> void:
 	
 	if can_open_shop:
 		if Input.is_action_just_pressed("toggle_shop"):
-			trigger_shop.emit()
+			buy_acorn.emit()
+	
+	if is_holding_acorn:
+		if Input.is_action_just_pressed("pick_up"):
+			is_holding_acorn = false
+			acorn.is_being_held = false
+			acorn = null
+			return
+
+		acorn.position = position + Vector3(0, 1.5, 0)
 	
 	if %PickableCast.is_colliding():
 		var collider = %PickableCast.get_collider()
+		
+		if "draggable_type" in collider:
+			if Input.is_action_just_pressed("pick_up"):
+				is_holding_acorn = true
+				acorn = collider
+				acorn.is_being_held = true
+				return
+		
 		if collider:
 			var mesh = collider.get_parent()
+			
 			if mesh.name == "Game":
 				return
+				
 			var node_scene_instance = mesh.get_parent()
 			
 			if "pickable_type" in node_scene_instance:

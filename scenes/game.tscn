@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://iqf5ud4ib0kr"]
+[gd_scene load_steps=27 format=3 uid="uid://iqf5ud4ib0kr"]
 
 [ext_resource type="Script" uid="uid://brxuvhhgyqav1" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b1a5xi6sr0rd3" path="res://assets/LowPoly Environment Pack/Mounting_1.fbx" id="2_rysoc"]
@@ -41,6 +41,7 @@ glow_bloom = 0.4
 adjustment_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqjtg"]
+transparency = 1
 albedo_color = Color(0.26, 0.143, 0, 1)
 metallic = 0.1
 metallic_specular = 0.55
@@ -60,6 +61,13 @@ size = Vector3(23.0684, 1, 0.563538)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vtaks"]
 size = Vector3(6.69116, 7.52539, 5.13785)
+
+[sub_resource type="Curve3D" id="Curve3D_rysoc"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -32.669, 3, -7.462, 0, 0, 0, 0, 0, 0, -28.617, 3, -7.485),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_uwrxv")
@@ -221,6 +229,13 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -30.5043, 0, -9.85371)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.421, 3.2627, -8.76834)
 shape = SubResource("BoxShape3D_vtaks")
 
+[node name="AcornPath" type="Path3D" parent="Shop"]
+curve = SubResource("Curve3D_rysoc")
+
+[node name="AcornPathFollow" type="PathFollow3D" parent="Shop/AcornPath"]
+unique_name_in_owner = true
+transform = Transform3D(0.00567608, 0, -0.999984, 0, 1, 0, 0.999984, 0, 0.00567608, -32.669, 3, -7.462)
+
 [node name="Trees" type="Node3D" parent="."]
 
 [node name="Tree" parent="Trees" instance=ExtResource("5_iywne")]
@@ -241,21 +256,12 @@ candy: 0"
 
 [node name="OpenShopLabel" type="Label" parent="HUD"]
 visible = false
-offset_left = 207.0
-offset_top = 136.0
-offset_right = 542.0
-offset_bottom = 288.0
-theme_override_font_sizes/font_size = 111
-text = "you can open shop"
-
-[node name="Shop" type="Label" parent="HUD"]
-visible = false
-offset_left = 205.0
-offset_top = 310.0
-offset_right = 1212.0
-offset_bottom = 462.0
-theme_override_font_sizes/font_size = 111
-text = "ooo cool stuff in shop"
+offset_left = 199.0
+offset_top = 470.0
+offset_right = 1206.0
+offset_bottom = 622.0
+theme_override_font_sizes/font_size = 70
+text = "buy acorn from shopkeeper? (-1 candy)"
 
 [node name="Logs" type="Node3D" parent="."]
 
@@ -288,7 +294,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7773, 0.0400001, 17.3456)
 [node name="Candy5" parent="Candies" instance=ExtResource("14_trtic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.31565, 0.0400001, 12.5524)
 
-[connection signal="trigger_shop" from="Player" to="HUD" method="_on_player_trigger_shop"]
+[connection signal="spawn_acorn" from="." to="Shop" method="_on_game_spawn_acorn"]
+[connection signal="update_hud" from="." to="HUD" method="_on_game_update_hud"]
+[connection signal="buy_acorn" from="Player" to="." method="_on_player_buy_acorn"]
 [connection signal="update_hud" from="Player" to="HUD" method="_on_player_update_hud"]
 [connection signal="update_shop_visibility" from="Shop" to="Player" method="_on_shop_update_shop_visibility"]
 [connection signal="update_shop_visibility" from="Shop" to="HUD" method="_on_shop_update_shop_visibility"]
