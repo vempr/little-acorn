@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://iqf5ud4ib0kr"]
+[gd_scene load_steps=43 format=3 uid="uid://iqf5ud4ib0kr"]
 
 [ext_resource type="Script" uid="uid://brxuvhhgyqav1" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b1a5xi6sr0rd3" path="res://assets/LowPoly Environment Pack/Mounting_1.fbx" id="2_rysoc"]
@@ -17,6 +17,15 @@
 [ext_resource type="Script" uid="uid://dep00p08am4pj" path="res://scripts/hud.gd" id="12_dinhu"]
 [ext_resource type="PackedScene" uid="uid://c460qfwwm74jo" path="res://scenes/pickable/log.tscn" id="13_kvuet"]
 [ext_resource type="PackedScene" uid="uid://bxwqi1t0ukbyu" path="res://scenes/pickable/candy.tscn" id="14_trtic"]
+[ext_resource type="FontFile" uid="uid://cuqsdel4vspt1" path="res://assets/Matcha Vibes.otf" id="16_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://tq25na7cp84x" path="res://scenes/home/floor_wood.tscn" id="19_264po"]
+[ext_resource type="Script" uid="uid://cf052u3aesmuy" path="res://scripts/home.gd" id="19_bhx41"]
+[ext_resource type="ArrayMesh" uid="uid://6kk54cw7tyn3" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/candle.obj" id="20_5newe"]
+[ext_resource type="ArrayMesh" uid="uid://d2gxno371nidx" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/candle_triple.obj" id="21_37s47"]
+[ext_resource type="ArrayMesh" uid="uid://d2uc8ylh4y1ei" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/fence.obj" id="22_e1j6l"]
+[ext_resource type="ArrayMesh" uid="uid://cc8a38o8avy7n" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/fence_broken.obj" id="23_pl11u"]
+[ext_resource type="ArrayMesh" uid="uid://c1mdn8xg5qxjh" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/fence_seperate.obj" id="24_bhx41"]
+[ext_resource type="ArrayMesh" uid="uid://biyl7hag1ibc6" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/lantern_standing.obj" id="25_pl11u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_top_color = Color(0.62, 0.3472, 0.351747, 1)
@@ -69,8 +78,79 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bt5mj"]
+albedo_color = Color(1, 0.38, 0.38, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e1j6l"]
+size = Vector3(0.889282, 1, 1.74707)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qnb83"]
+size = Vector3(1.29022, 1, 0.94104)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pl11u"]
+size = Vector3(0.231689, 1, 4.07703)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bhx41"]
+size = Vector3(7.4187, 1, 0.406357)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1j6l"]
+albedo_color = Color(1, 0.380392, 0.380392, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sww3w"]
+size = Vector3(8.039, 0.3, 7.988)
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_uwrxv")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("12_dinhu")
+
+[node name="Label" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 111
+text = "day: 1
+logs: 0
+candy: 0
+deposited acorns: 0"
+
+[node name="OpenShopLabel" type="Label" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -418.5
+offset_top = -97.0
+offset_right = 418.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 60
+text = "buy acorn from shopkeeper? (-1 candy)"
+
+[node name="HomeLabel" type="Label" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -418.5
+offset_top = -97.0
+offset_right = 418.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 60
+text = "my home! i can magically deposit acorns here!
+(tip: press 'b' to deposit the logs and go sleep)"
+horizontal_alignment = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_lnu2h")
@@ -244,25 +324,6 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.902, 0, 8.394)
 [node name="Tree2" parent="Trees" instance=ExtResource("5_iywne")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.792, 0, -12.405)
 
-[node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("12_dinhu")
-
-[node name="Label" type="Label" parent="HUD"]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 111
-text = "logs: 0
-candy: 0"
-
-[node name="OpenShopLabel" type="Label" parent="HUD"]
-visible = false
-offset_left = 199.0
-offset_top = 470.0
-offset_right = 1206.0
-offset_bottom = 622.0
-theme_override_font_sizes/font_size = 70
-text = "buy acorn from shopkeeper? (-1 candy)"
-
 [node name="Logs" type="Node3D" parent="."]
 
 [node name="Log" parent="Logs" instance=ExtResource("13_kvuet")]
@@ -294,11 +355,90 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7773, 0.0400001, 17.3456)
 [node name="Candy5" parent="Candies" instance=ExtResource("14_trtic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.31565, 0.0400001, 12.5524)
 
+[node name="Home" type="Node3D" parent="."]
+script = ExtResource("19_bhx41")
+
+[node name="Floor" type="Node3D" parent="Home"]
+
+[node name="FloorWood" parent="Home/Floor" instance=ExtResource("19_264po")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.159, -0.01586, -46.0424)
+
+[node name="FloorWood2" parent="Home/Floor" instance=ExtResource("19_264po")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.2801, -0.01586, -46.0424)
+
+[node name="FloorWood3" parent="Home/Floor" instance=ExtResource("19_264po")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.2801, -0.01586, -42.0536)
+
+[node name="FloorWood4" parent="Home/Floor" instance=ExtResource("19_264po")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.1589, -0.01586, -42.0536)
+
+[node name="RandomStuff" type="Node3D" parent="Home"]
+
+[node name="Candle" type="MeshInstance3D" parent="Home/RandomStuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.657, 0, -47.363)
+mesh = ExtResource("20_5newe")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bt5mj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Home/RandomStuff/Candle"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Home/RandomStuff/Candle/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0553589, 0, 0.373535)
+shape = SubResource("BoxShape3D_e1j6l")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Home/RandomStuff/Candle/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145111, 0, -0.02948)
+shape = SubResource("BoxShape3D_qnb83")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Home/RandomStuff/Candle/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.384155, 0, 1.53851)
+shape = SubResource("BoxShape3D_pl11u")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Home/RandomStuff/Candle/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.20935, 0, -0.296822)
+shape = SubResource("BoxShape3D_bhx41")
+
+[node name="CandleTriple" type="MeshInstance3D" parent="Home/RandomStuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.2153, 0, -47.1428)
+mesh = ExtResource("21_37s47")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_e1j6l")
+
+[node name="Fence" type="MeshInstance3D" parent="Home/RandomStuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.26, 0, -47.707)
+mesh = ExtResource("22_e1j6l")
+skeleton = NodePath("../../..")
+
+[node name="FenceBroken" type="MeshInstance3D" parent="Home/RandomStuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.712, 0, -47.707)
+mesh = ExtResource("23_pl11u")
+skeleton = NodePath("../../..")
+
+[node name="FenceSeperate" type="MeshInstance3D" parent="Home/RandomStuff"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -46.1301, -0.000244141, -45.8563)
+mesh = ExtResource("24_bhx41")
+skeleton = NodePath("../../..")
+
+[node name="HomeArea" type="Area3D" parent="Home"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Home/HomeArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.115, 0, -44.046)
+shape = SubResource("BoxShape3D_sww3w")
+
+[node name="LanternStanding" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.64, 0, -46.543)
+mesh = ExtResource("25_pl11u")
+
 [connection signal="spawn_acorn" from="." to="Shop" method="_on_game_spawn_acorn"]
 [connection signal="update_hud" from="." to="HUD" method="_on_game_update_hud"]
 [connection signal="buy_acorn" from="Player" to="." method="_on_player_buy_acorn"]
 [connection signal="update_hud" from="Player" to="HUD" method="_on_player_update_hud"]
-[connection signal="update_shop_visibility" from="Shop" to="Player" method="_on_shop_update_shop_visibility"]
 [connection signal="update_shop_visibility" from="Shop" to="HUD" method="_on_shop_update_shop_visibility"]
+[connection signal="update_shop_visibility" from="Shop" to="Player" method="_on_shop_update_shop_visibility"]
 [connection signal="body_entered" from="Shop/BuyArea" to="Shop" method="_on_buy_area_body_entered"]
 [connection signal="body_exited" from="Shop/BuyArea" to="Shop" method="_on_buy_area_body_exited"]
+[connection signal="deposit_acorn" from="Home" to="." method="_on_home_deposit_acorn"]
+[connection signal="progress_day" from="Home" to="." method="_on_home_progress_day"]
+[connection signal="update_home_visibility" from="Home" to="HUD" method="_on_home_update_home_visibility"]
+[connection signal="body_entered" from="Home/HomeArea" to="Home" method="_on_home_area_body_entered"]
+[connection signal="body_exited" from="Home/HomeArea" to="Home" method="_on_home_area_body_exited"]

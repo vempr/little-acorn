@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://tq25na7cp84x"]
+
+[ext_resource type="PackedScene" uid="uid://c6t6yxk0lnrfh" path="res://assets/brackeys_3d_game_assets/dungeon_assets/building/floor_wood.glb" id="1_iaiyt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbygh"]
+albedo_color = Color(0.396078, 0.262745, 0.129412, 1)
+
+[node name="FloorWood" instance=ExtResource("1_iaiyt")]
+
+[node name="floor_wood_large_dark" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qbygh")
