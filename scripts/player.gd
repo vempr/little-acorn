@@ -12,6 +12,24 @@ var can_open_shop := false
 var is_holding_acorn := false
 var acorn
 var day_is_over := false
+var running_sound_playing := false
+
+func _process(_delta: float) -> void:
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED && !day_is_over:
+		var input = Vector3.ZERO
+		input.x = Input.get_axis("left", "right")
+		input.z = Input.get_axis("forward", "backward")
+		
+		var is_running = input.length() > 0.1
+		
+		if is_running:
+			if !running_sound_playing:
+				%Running.play()
+				running_sound_playing = true
+		else:
+			if running_sound_playing:
+				%Running.stop()
+				running_sound_playing = false
 
 
 func _physics_process(delta: float) -> void:
@@ -54,6 +72,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_holding_acorn:
 		if Input.is_action_just_pressed("pick_up"):
+			%DropAcorn.play(2.0)
 			is_holding_acorn = false
 			acorn.is_being_held = false
 			acorn = null
@@ -66,6 +85,7 @@ func _physics_process(delta: float) -> void:
 		
 		if "draggable_type" in collider:
 			if Input.is_action_just_pressed("pick_up"):
+				%PickAcorn.play()
 				is_holding_acorn = true
 				acorn = collider
 				acorn.is_being_held = true
@@ -81,6 +101,7 @@ func _physics_process(delta: float) -> void:
 			
 			if "pickable_type" in node_scene_instance:
 				if Input.is_action_just_pressed("pick_up"):
+					%GetCandy.play()
 					GAME.inventory[node_scene_instance.pickable_type] += 1
 					node_scene_instance.queue_free()
 					update_hud.emit()
@@ -89,6 +110,7 @@ func _physics_process(delta: float) -> void:
 			var node = node_scene_instance.get_parent()
 			if "pickable_type" in node:
 				if Input.is_action_just_pressed("pick_up"):
+					%GetWood.play(0.75)
 					GAME.inventory[node.pickable_type] += 1
 					node.visible = false
 					node.process_mode = Node.PROCESS_MODE_DISABLED
@@ -117,6 +139,8 @@ func _on_pumpkin_area_body_entered(body: Node3D) -> void:
 
 
 func stop() -> void:
+	%Splat.play(0.3)
+	%Running.stop()
 	player_died.emit()
 	process_mode = Node.PROCESS_MODE_DISABLED
 

@@ -10,4 +10,10 @@ func _on_spawn_timer_timeout() -> void:
 	pumpkin.position = path.position
 	
 	add_child(pumpkin)
-	%SpawnTimer.start(randf_range(1, 2))
+	%SpawnTimer.start(randf_range(0.5, 1))
+
+
+func _on_game_update_positions() -> void:
+	for child in get_children():
+		if "is_a_pumpkin" in child:
+			child.queue_free()

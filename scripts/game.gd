@@ -26,6 +26,7 @@ func _process(_delta: float) -> void:
 
 func _on_player_buy_acorn() -> void:
 	if GAME.inventory[1] > 0:
+		%BuyAcorn.play()
 		GAME.inventory[1] -= 1
 		update_hud.emit()
 		
@@ -33,11 +34,13 @@ func _on_player_buy_acorn() -> void:
 
 
 func _on_home_deposit_acorn() -> void:
+	%AcornDeposit.play()
 	GAME.deposit[GAME.DEPOSIT_TYPE.ACORN] += 1
 	update_hud.emit()
 
 
 func _on_home_progress_day() -> void:
+	%Sleep.play()
 	await Fade.fade_out().finished
 	update_positions.emit()
 	
@@ -104,6 +107,7 @@ func _on_pause_menu_exit_to_main_menu() -> void:
 
 
 func _on_day_timer_timeout() -> void:
+	%Sleep.play()
 	await Fade.fade_out().finished
 	update_positions.emit()
 	

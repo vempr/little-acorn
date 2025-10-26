@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://iqf5ud4ib0kr"]
+[gd_scene load_steps=97 format=3 uid="uid://iqf5ud4ib0kr"]
 
 [ext_resource type="Script" uid="uid://brxuvhhgyqav1" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://cikkay7kc54m2" path="res://scripts/pause_menu.gd" id="2_qouja"]
@@ -48,6 +48,16 @@
 [ext_resource type="ArrayMesh" uid="uid://c3ilktnl6pr7u" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/bone_B.obj" id="44_0sl42"]
 [ext_resource type="PackedScene" uid="uid://dk46h028ukld2" path="res://scenes/pickable/log_types/log_1.tscn" id="46_458eo"]
 [ext_resource type="PackedScene" uid="uid://d4gx1oahf10uy" path="res://scenes/pickable/log_types/log_2.tscn" id="47_h3rex"]
+[ext_resource type="AudioStream" uid="uid://dsej0iyqhhqkl" path="res://assets/sfx/snore-mimimimimimi.mp3" id="49_7ixpq"]
+[ext_resource type="AudioStream" uid="uid://domjlo61jisoj" path="res://assets/sfx/cartoon-running-sound-effect-online-audio-converter (mp3cut.net).mp3" id="49_8qswn"]
+[ext_resource type="AudioStream" uid="uid://dlwjm37pco6bf" path="res://assets/sfx/splat-sound-effect-free-download.mp3" id="49_bk1p3"]
+[ext_resource type="AudioStream" uid="uid://2mxjromftlx2" path="res://assets/sfx/minecraft-drop-block-sound-effect.mp3" id="49_i4re6"]
+[ext_resource type="AudioStream" uid="uid://bpwftusb4gv2u" path="res://assets/sfx/fairy-dust-sound-effect.mp3" id="49_o8ni1"]
+[ext_resource type="AudioStream" uid="uid://4s8bjhdeyar2" path="res://assets/sfx/wood-being-chopped-1-228496.mp3" id="49_pf7vy"]
+[ext_resource type="AudioStream" uid="uid://ltq6eo25dkbi" path="res://assets/sfx/cash-register-purchase-87313.mp3" id="49_q8j3a"]
+[ext_resource type="AudioStream" uid="uid://c0sxisf0x4vd0" path="res://assets/sfx/forest-ambience-296528.mp3" id="49_rm0al"]
+[ext_resource type="AudioStream" uid="uid://bcf30rjt1fp3q" path="res://assets/sfx/pop_7e9Is8L.mp3" id="50_ms3bu"]
+[ext_resource type="AudioStream" uid="uid://d0lgw73etpyxe" path="res://assets/sfx/xphit.mp3" id="52_ms3bu"]
 
 [sub_resource type="Gradient" id="Gradient_bhx41"]
 
@@ -227,7 +237,6 @@ one_shot = true
 
 [node name="LeavesParticles" type="GPUParticles3D" parent="Particles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.002, 0)
-visible = false
 amount = 800
 amount_ratio = 0.7
 lifetime = 8.0
@@ -1753,11 +1762,64 @@ theme_override_fonts/font = ExtResource("16_ssvqc")
 theme_override_font_sizes/font_size = 60
 text = "0 (15 needed)"
 
+[node name="SFX" type="Node" parent="."]
+process_mode = 3
+
+[node name="Splat" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("49_bk1p3")
+volume_db = -5.0
+
+[node name="Sleep" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("49_7ixpq")
+volume_db = -20.0
+pitch_scale = 1.1
+
+[node name="BuyAcorn" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("49_q8j3a")
+volume_db = -20.0
+
+[node name="PickAcorn" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("50_ms3bu")
+volume_db = -10.0
+
+[node name="DropAcorn" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("49_i4re6")
+
+[node name="AcornDeposit" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("52_ms3bu")
+
+[node name="GetCandy" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("49_o8ni1")
+pitch_scale = 1.5
+
+[node name="GetWood" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("49_pf7vy")
+volume_db = -10.0
+
+[node name="Ambience" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("49_rm0al")
+volume_db = -10.0
+autoplay = true
+
+[node name="Running" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("49_8qswn")
+volume_db = -22.0
+
 [connection signal="spawn_acorn" from="." to="Shop" method="_on_game_spawn_acorn"]
 [connection signal="toggle_player_camera" from="." to="Player" method="_on_game_toggle_player_camera"]
 [connection signal="update_hud" from="." to="HUD" method="_on_game_update_hud"]
 [connection signal="update_positions" from="." to="Logs" method="_on_game_update_positions"]
 [connection signal="update_positions" from="." to="Candies" method="_on_game_update_positions"]
+[connection signal="update_positions" from="." to="PumpkinSpawnPath" method="_on_game_update_positions"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="DayTimer" to="Player" method="_on_day_timer_timeout"]
 [connection signal="exit_to_main_menu" from="PauseMenu" to="." method="_on_pause_menu_exit_to_main_menu"]

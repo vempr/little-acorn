@@ -17,6 +17,8 @@ universal_fade/patterns_directory="res://addons/UniversalFade/Patterns"
 config/name="Little Acorn"
 run/main_scene="uid://iqf5ud4ib0kr"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://8ruo8nyu8dpj"
 config/icon="res://icon.svg"
 
 [autoload]

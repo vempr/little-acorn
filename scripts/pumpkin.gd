@@ -10,6 +10,9 @@ func _ready() -> void:
 	
 	var pumpkin: RigidBody3D
 	
+	for child in get_children():
+		child.process_mode = Node.PROCESS_MODE_DISABLED
+	
 	match randi_range(0, get_child_count() - 1):
 		0:
 			%PumpkinOrange.visible = true
@@ -41,7 +44,8 @@ func _ready() -> void:
 		0,
 		randf_range(-1.0, 1.0)
 	).normalized()
-		
+	
+	pumpkin.process_mode = Node.PROCESS_MODE_INHERIT
 	pumpkin.apply_central_impulse(random_dir * randf_range(1.0, 3.0))
 	pumpkin.apply_torque_impulse(Vector3(
 		randf_range(-1.0, 1.0),
