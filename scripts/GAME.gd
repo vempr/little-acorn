@@ -24,3 +24,14 @@ func reset_inventory() -> void:
 		PICKABLE_TYPE.LOG: 0,
 		PICKABLE_TYPE.CANDY: 0,
 	}
+
+
+func reset_everything() -> void:
+	reset_inventory()
+	deposit = {
+		DEPOSIT_TYPE.LOG: 0,
+		DEPOSIT_TYPE.ACORN: 0,
+	}
+	state = {
+		"day": 1
+	}

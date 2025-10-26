@@ -9,7 +9,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	pass
+	%WorldEnvironment.environment.background_energy_multiplier = 1.0 + (%DayTimer.time_left - 60.0) * 0.013
+	%Light.light_energy = 1.0 + (%DayTimer.time_left - 60.0) * 0.015
 
 
 func _on_player_buy_acorn() -> void:
@@ -32,5 +33,17 @@ func _on_home_progress_day() -> void:
 	GAME.deposit[GAME.DEPOSIT_TYPE.LOG] += GAME.inventory[GAME.PICKABLE_TYPE.LOG]
 	GAME.reset_inventory()
 	
+	get_tree().reload_current_scene()
+	Fade.fade_in()
+
+
+func _on_player_player_died() -> void:
+	%DayTimer.paused = true
+	%SpawnTimer.paused = true
+
+
+func _on_hud_restart_game() -> void:
+	await Fade.fade_out().finished
+	GAME.reset_everything()
 	get_tree().reload_current_scene()
 	Fade.fade_in()

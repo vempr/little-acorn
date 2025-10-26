@@ -1,11 +1,10 @@
-[gd_scene load_steps=48 format=3 uid="uid://iqf5ud4ib0kr"]
+[gd_scene load_steps=49 format=3 uid="uid://iqf5ud4ib0kr"]
 
 [ext_resource type="Script" uid="uid://brxuvhhgyqav1" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b1a5xi6sr0rd3" path="res://assets/LowPoly Environment Pack/Mounting_1.fbx" id="2_rysoc"]
 [ext_resource type="PackedScene" uid="uid://5vkvd2nqcfdg" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ddnq35km5i7ap" path="res://assets/LowPoly Environment Pack/Mounting_2.fbx" id="3_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://cxidsc30ue7fh" path="res://assets/LowPoly Environment Pack/Mounting_3.fbx" id="4_264po"]
-[ext_resource type="PackedScene" uid="uid://ckl18up56cyo3" path="res://scenes/pumpkin.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dcoi8ocufk4wm" path="res://scenes/deco/bench.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://b1isak8jbqx4p" path="res://scenes/deco/tree.tscn" id="5_iywne"]
 [ext_resource type="Script" uid="uid://ddidedg51hv0r" path="res://scripts/shop.gd" id="5_kvpfn"]
@@ -26,6 +25,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cc8a38o8avy7n" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/fence_broken.obj" id="23_pl11u"]
 [ext_resource type="ArrayMesh" uid="uid://c1mdn8xg5qxjh" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/fence_seperate.obj" id="24_bhx41"]
 [ext_resource type="ArrayMesh" uid="uid://biyl7hag1ibc6" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/lantern_standing.obj" id="25_pl11u"]
+[ext_resource type="Script" uid="uid://cxpgpenpvrobd" path="res://scripts/pumpkin_spawner.gd" id="27_qnb83"]
 
 [sub_resource type="Gradient" id="Gradient_bhx41"]
 
@@ -128,6 +128,14 @@ albedo_color = Color(1, 0.380392, 0.380392, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_sww3w"]
 size = Vector3(8.039, 0.3, 7.988)
 
+[sub_resource type="Curve3D" id="Curve3D_bhx41"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -43.017, 40, 40.299, 0, 0, 0, 0, 0, 0, 41.489, 40, 35.324, 0, 0, 0, 0, 0, 0, -42.303, 40, 26.041, 0, 0, 0, 0, 0, 0, 43.659, 40, 14.955, 0, 0, 0, 0, 0, 0, -42.303, 40, 6.703, 0, 0, 0, 0, 0, 0, 45.015, 40, -6.188, 0, 0, 0, 0, 0, 0, -40.405, 40, -14.955, 0, 0, 0, 0, 0, 0, 42.846, 40, -27.072, 0, 0, 0, 0, 0, 0, -43.659, 40, -32.23, 0, 0, 0, 0, 0, 0, 42.846, 40, -40.995),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_uwrxv")
 
@@ -136,6 +144,7 @@ visible = false
 
 [node name="LeavesParticles" type="GPUParticles3D" parent="Particles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.002, 0)
+visible = false
 amount = 800
 amount_ratio = 0.7
 lifetime = 8.0
@@ -196,10 +205,69 @@ text = "my home! i can magically deposit acorns here!
 (tip: press 'b' to deposit the logs and go sleep)"
 horizontal_alignment = 1
 
+[node name="DieLabel" type="Label" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -418.5
+offset_top = -230.0
+offset_right = 418.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 200
+text = "you ded."
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.0
+offset_top = -7.0
+offset_right = 258.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 60
+text = "restart"
+
+[node name="MainMenuButton" type="Button" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.0
+offset_top = 92.0
+offset_right = 258.0
+offset_bottom = 177.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 60
+text = "main menu"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+unique_name_in_owner = true
 environment = SubResource("Environment_lnu2h")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Light" type="DirectionalLight3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 light_color = Color(1, 0.85, 0.64, 1)
 light_angular_distance = 15.0
@@ -325,11 +393,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -55.67
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
 top_level = true
 
-[node name="Bench" parent="." instance=ExtResource("4_lbhrr")]
+[node name="Benches" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1684, 0, 8.64101)
 
-[node name="Pumpkin" parent="." instance=ExtResource("4_iywne")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 22.777, -2)
+[node name="Bench" parent="Benches" instance=ExtResource("4_lbhrr")]
 
 [node name="Shop" type="Node3D" parent="."]
 script = ExtResource("5_kvpfn")
@@ -471,13 +538,38 @@ skeleton = NodePath("../../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.115, 0, -44.046)
 shape = SubResource("BoxShape3D_sww3w")
 
-[node name="LanternStanding" type="MeshInstance3D" parent="."]
+[node name="LanternStanding" type="MeshInstance3D" parent="Home"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.64, 0, -46.543)
 mesh = ExtResource("25_pl11u")
+skeleton = NodePath("../..")
+
+[node name="PumpkinSpawnPath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_bhx41")
+script = ExtResource("27_qnb83")
+
+[node name="PumpkinPathFollow" type="PathFollow3D" parent="PumpkinSpawnPath"]
+unique_name_in_owner = true
+transform = Transform3D(0.0587697, 0, -0.99827, 0, 1, 0, 0.99827, 0, 0.0587697, -43.017, 40, 40.299)
+
+[node name="SpawnTimer" type="Timer" parent="PumpkinSpawnPath"]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="DayTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 60.0
+one_shot = true
+autostart = true
 
 [connection signal="spawn_acorn" from="." to="Shop" method="_on_game_spawn_acorn"]
 [connection signal="update_hud" from="." to="HUD" method="_on_game_update_hud"]
+[connection signal="restart_game" from="HUD" to="." method="_on_hud_restart_game"]
+[connection signal="pressed" from="HUD/RestartButton" to="HUD" method="_on_restart_button_pressed"]
 [connection signal="buy_acorn" from="Player" to="." method="_on_player_buy_acorn"]
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
+[connection signal="player_died" from="Player" to="HUD" method="_on_player_player_died"]
 [connection signal="update_hud" from="Player" to="HUD" method="_on_player_update_hud"]
 [connection signal="update_shop_visibility" from="Shop" to="HUD" method="_on_shop_update_shop_visibility"]
 [connection signal="update_shop_visibility" from="Shop" to="Player" method="_on_shop_update_shop_visibility"]
@@ -488,3 +580,4 @@ mesh = ExtResource("25_pl11u")
 [connection signal="update_home_visibility" from="Home" to="HUD" method="_on_home_update_home_visibility"]
 [connection signal="body_entered" from="Home/HomeArea" to="Home" method="_on_home_area_body_entered"]
 [connection signal="body_exited" from="Home/HomeArea" to="Home" method="_on_home_area_body_exited"]
+[connection signal="timeout" from="PumpkinSpawnPath/SpawnTimer" to="PumpkinSpawnPath" method="_on_spawn_timer_timeout"]

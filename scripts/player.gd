@@ -2,6 +2,7 @@ extends RigidBody3D
 
 signal buy_acorn
 signal update_hud
+signal player_died
 
 var mouse_sensitivity := 0.001
 var twist_input := 0.0
@@ -116,10 +117,13 @@ func _on_shop_update_shop_visibility(isVisible: bool) -> void:
 
 func _on_pumpkin_area_body_entered(body: Node3D) -> void:
 	if "is_a_pumpkin" in body.get_parent():
-		visible = false
+		for child in get_children():
+			child.visible = false
+		%Skull.visible = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		call_deferred("stop")
 
 
 func stop() -> void:
+	player_died.emit()
 	process_mode = Node.PROCESS_MODE_DISABLED

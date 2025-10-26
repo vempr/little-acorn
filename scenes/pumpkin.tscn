@@ -27,11 +27,11 @@ size = Vector3(1.45874, 1, 1.33594)
 size = Vector3(0.616211, 0.413452, 0.614258)
 
 [node name="Pumpkin" type="Node3D"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_qdl88")
 
 [node name="PumpkinOrange" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="PoM" type="MeshInstance3D" parent="PumpkinOrange"]
 mesh = ExtResource("2_ch6vm")
