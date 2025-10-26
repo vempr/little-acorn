@@ -13,10 +13,6 @@ var is_holding_acorn := false
 var acorn
 
 
-func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-
 func _physics_process(delta: float) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var input = Vector3.ZERO
@@ -50,12 +46,6 @@ func _physics_process(delta: float) -> void:
 	
 	twist_input = 0.0
 	pitch_input = 0.0
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	if can_open_shop:
 		if Input.is_action_just_pressed("toggle_shop"):
@@ -104,7 +94,7 @@ func _physics_process(delta: float) -> void:
 	
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			twist_input = - event.relative.x * mouse_sensitivity
@@ -127,3 +117,8 @@ func _on_pumpkin_area_body_entered(body: Node3D) -> void:
 func stop() -> void:
 	player_died.emit()
 	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func _on_game_toggle_player_camera() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	%Camera.current = true

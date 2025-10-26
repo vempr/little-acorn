@@ -4,6 +4,7 @@ enum PICKABLE_TYPE { LOG, CANDY }
 enum DRAGGABLE_TYPE { ACORN }
 enum DEPOSIT_TYPE { LOG, ACORN }
 
+var started := false
 var state := {
 	"day": 1
 }
