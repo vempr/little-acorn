@@ -358,7 +358,7 @@ theme_override_fonts/font = ExtResource("16_ssvqc")
 theme_override_font_sizes/font_size = 40
 text = "cute squirrel builds shelter and collects food for the winter during the peak of fall - don't get splat by a pumpkin!
 
-(controls: e/space to interact,
+(controls: e or space to interact,
 esc to pause game)"
 horizontal_alignment = 1
 autowrap_mode = 2

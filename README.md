@@ -8,7 +8,7 @@ This is my first 3D (Godot) game and I had a lot of fun making it!
 ## How to play
 
 The movement is pretty simple. You can only move with <kbd>wasd</kbd>,
-interact with <kbd>e</kbd>/<kbd>spacebar</kbd>, and pause the game with <kbd>esc</kbd>.
+interact with <kbd>e</kbd>/<kbd>spacebar</kbd>, and pause the game with <kbd>p</kbd>.
 There are five short days in total and for each of them,
 you get 90 seconds to collect as many acorns and logs for your fire as possible.
 

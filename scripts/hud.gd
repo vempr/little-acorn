@@ -23,7 +23,7 @@ func _on_shop_update_shop_visibility(isVisible: bool) -> void:
 
 
 func update_hud() -> void:
-	%DayLabel.text = "day " + str(GAME.state["day"]) + "/5"
+	%DayLabel.text = "day " + str(GAME.state["day"]) + " out of 5"
 	%BranchStat.text = str(GAME.inventory[GAME.PICKABLE_TYPE.LOG])
 	%CandyStat.text = str(GAME.inventory[GAME.PICKABLE_TYPE.CANDY])
 	%TimeLabel.text = "%.2fs" % %DayTimer.time_left

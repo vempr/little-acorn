@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if GAME.started:
-		if Input.is_action_just_pressed("ui_cancel"):
+		if Input.is_action_just_pressed("pause_game"):
 			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 				get_tree().paused = true
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
