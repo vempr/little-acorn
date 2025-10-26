@@ -1,6 +1,7 @@
 extends Node3D
 
 signal update_hud
+signal update_positions
 signal spawn_acorn
 signal toggle_player_camera(is_on: bool)
 
@@ -38,14 +39,21 @@ func _on_home_deposit_acorn() -> void:
 
 func _on_home_progress_day() -> void:
 	await Fade.fade_out().finished
+	update_positions.emit()
 	
 	GAME.state["day"] += 1
 	GAME.deposit[GAME.DEPOSIT_TYPE.LOG] += GAME.inventory[GAME.PICKABLE_TYPE.LOG]
-	GAME.reset_inventory()
-	
-	%DayTimer.start()
-	%SpawnTimer.start()
-	Fade.fade_in()
+	if GAME.state["day"] == 6:
+		%DayTimer.stop()
+		%SpawnTimer.stop()
+		end_game()
+		return
+	else:
+		GAME.reset_inventory()
+		
+		%DayTimer.start()
+		%SpawnTimer.start()
+		Fade.fade_in()
 
 
 func _on_player_player_died() -> void:
@@ -55,6 +63,14 @@ func _on_player_player_died() -> void:
 
 func _on_hud_restart_game() -> void:
 	await Fade.fade_out().finished
+	
+	%Light.visible = true
+	%Win.visible = false
+	%Lose.visible = false
+	%WinCanvas.visible = false
+	%LoseCanvas.visible = false
+	%StatCanvas.visible = false
+	%EndCamera.current = false
 	
 	get_tree().paused = false
 	GAME.reset_everything()
@@ -69,6 +85,7 @@ func _on_hud_restart_game() -> void:
 func _on_main_menu_start_game() -> void:
 	await Fade.fade_out().finished
 	
+	%Light.visible = true
 	%MMCamera.current = false
 	toggle_player_camera.emit(true)
 	%MainMenu.visible = false
@@ -84,3 +101,44 @@ func _on_main_menu_start_game() -> void:
 
 func _on_pause_menu_exit_to_main_menu() -> void:
 	_on_hud_restart_game()
+
+
+func _on_day_timer_timeout() -> void:
+	await Fade.fade_out().finished
+	update_positions.emit()
+	
+	GAME.state["day"] += 1
+	if GAME.state["day"] == 6:
+		%DayTimer.stop()
+		%SpawnTimer.stop()
+		%Player.day_is_over = false
+		end_game()
+		return
+	else:
+		GAME.reset_inventory()
+		
+		%DayTimer.start()
+		%SpawnTimer.start()
+		%Player.day_is_over = false
+		Fade.fade_in()
+
+
+func end_game() -> void:
+	toggle_player_camera.emit(false)
+	%HUD.visible = false
+	%Player.visible = false
+	%EndCamera.current = true
+	%Light.visible = false
+	%StatCanvas.visible = true
+	
+	if GAME.deposit[GAME.DEPOSIT_TYPE.LOG] >= 30 && GAME.deposit[GAME.DEPOSIT_TYPE.ACORN] >= 15:
+		%Win.visible = true
+		%WinCanvas.visible = true
+	else:
+		%Lose.visible = true
+		%LoseCanvas.visible = true
+	
+	%ESDepositBranch.text = str(GAME.deposit[GAME.DEPOSIT_TYPE.LOG]) + " (30 needed)"
+	%ESDepositAcorn.text = str(GAME.deposit[GAME.DEPOSIT_TYPE.ACORN]) + " (15 needed)"
+	
+	Fade.fade_in()

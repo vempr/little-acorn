@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://iqf5ud4ib0kr"]
+[gd_scene load_steps=87 format=3 uid="uid://iqf5ud4ib0kr"]
 
 [ext_resource type="Script" uid="uid://brxuvhhgyqav1" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://cikkay7kc54m2" path="res://scripts/pause_menu.gd" id="2_qouja"]
@@ -19,12 +19,15 @@
 [ext_resource type="PackedScene" uid="uid://drxb1v7dbinsw" path="res://scenes/shop/table.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://c1tur5sdxgda5" path="res://scenes/shop/coin_stack.tscn" id="8_vtaks"]
 [ext_resource type="Script" uid="uid://dep00p08am4pj" path="res://scripts/hud.gd" id="12_dinhu"]
+[ext_resource type="PackedScene" uid="uid://c460qfwwm74jo" path="res://scenes/pickable/log.tscn" id="13_kvuet"]
+[ext_resource type="PackedScene" uid="uid://bxwqi1t0ukbyu" path="res://scenes/pickable/candy.tscn" id="14_trtic"]
 [ext_resource type="FontFile" uid="uid://cuqsdel4vspt1" path="res://assets/Matcha Vibes.otf" id="16_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://tq25na7cp84x" path="res://scenes/home/floor_wood.tscn" id="19_264po"]
 [ext_resource type="Script" uid="uid://cf052u3aesmuy" path="res://scripts/home.gd" id="19_bhx41"]
 [ext_resource type="ArrayMesh" uid="uid://6kk54cw7tyn3" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/candle.obj" id="20_5newe"]
 [ext_resource type="ArrayMesh" uid="uid://d2gxno371nidx" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/candle_triple.obj" id="21_37s47"]
 [ext_resource type="ArrayMesh" uid="uid://d2uc8ylh4y1ei" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/fence.obj" id="22_e1j6l"]
+[ext_resource type="Script" uid="uid://drqlh4ojifpq8" path="res://scripts/pickable.gd" id="22_pr1ej"]
 [ext_resource type="ArrayMesh" uid="uid://cc8a38o8avy7n" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/fence_broken.obj" id="23_pl11u"]
 [ext_resource type="ArrayMesh" uid="uid://c1mdn8xg5qxjh" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/fence_seperate.obj" id="24_bhx41"]
 [ext_resource type="ArrayMesh" uid="uid://biyl7hag1ibc6" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/lantern_standing.obj" id="25_pl11u"]
@@ -39,6 +42,12 @@
 [ext_resource type="PackedScene" uid="uid://dy7a702qw3a30" path="res://scenes/deco/bush.tscn" id="38_7025r"]
 [ext_resource type="ArrayMesh" uid="uid://b8rdlnecu2tdh" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/path_D.obj" id="38_nepv3"]
 [ext_resource type="PackedScene" uid="uid://dc4rurpg2yvrc" path="res://scenes/deco/plant.tscn" id="39_7025r"]
+[ext_resource type="ArrayMesh" uid="uid://ck1rnbfmvtryb" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/skull.obj" id="43_05nbr"]
+[ext_resource type="ArrayMesh" uid="uid://pdp3d0430lie" path="res://assets/Voxel_Animal_Asset_Pack/Voxel_Animal_Asset_Pack/Animals/Fox/fox.vox.obj" id="43_fedci"]
+[ext_resource type="ArrayMesh" uid="uid://c7q1boujeopuk" path="res://assets/Acorn/acorn.obj" id="43_h3rex"]
+[ext_resource type="ArrayMesh" uid="uid://c3ilktnl6pr7u" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/bone_B.obj" id="44_0sl42"]
+[ext_resource type="PackedScene" uid="uid://dk46h028ukld2" path="res://scenes/pickable/log_types/log_1.tscn" id="46_458eo"]
+[ext_resource type="PackedScene" uid="uid://d4gx1oahf10uy" path="res://scenes/pickable/log_types/log_2.tscn" id="47_h3rex"]
 
 [sub_resource type="Gradient" id="Gradient_bhx41"]
 
@@ -170,8 +179,49 @@ size = Vector3(1.92944, 2.61685, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7025r"]
 size = Vector3(1.44922, 2.61685, 0.38916)
 
+[sub_resource type="Gradient" id="Gradient_fedci"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lplt3"]
+gradient = SubResource("Gradient_fedci")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qswn"]
+albedo_color = Color(0.58, 0.3857, 0.1914, 1)
+albedo_texture = SubResource("GradientTexture2D_lplt3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fedci"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 9.8, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fedci"]
+albedo_color = Color(1, 0.983333, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8qswn"]
+material = SubResource("StandardMaterial3D_fedci")
+radius = 0.04
+height = 0.1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qswn"]
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 9.8, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rm0al"]
+albedo_color = Color(1, 0.366667, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_i4re6"]
+material = SubResource("StandardMaterial3D_rm0al")
+radius = 0.04
+height = 0.1
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_uwrxv")
+
+[node name="DayTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 90.0
+one_shot = true
 
 [node name="Particles" type="Node3D" parent="."]
 
@@ -731,6 +781,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -55.67
 
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
 unique_name_in_owner = true
+process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.262, 1, -44.143)
 top_level = true
 visible = false
@@ -812,7 +863,7 @@ light_energy = 10.0
 
 [node name="Trees" type="Node3D" parent="."]
 
-[node name="Tree" parent="Trees" instance=ExtResource("5_iywne")]
+[node name="Tree1" parent="Trees" instance=ExtResource("5_iywne")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.53296, 0, 12.6209)
 
 [node name="Tree2" parent="Trees" instance=ExtResource("5_iywne")]
@@ -903,8 +954,79 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 38.5619, 1.10964, -27.5452)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -40.1485, 1.10952, -28.2884)
 
 [node name="Logs" type="Node3D" parent="."]
+script = ExtResource("22_pr1ej")
+min_pickable = 7
+
+[node name="Log1" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.9464, 0.019791, -42.0784)
+visible = false
+
+[node name="Log2" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.39612, 0.0199131, -11.7939)
+visible = false
+
+[node name="Log3" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.213, 0.019791, 18.4114)
+visible = false
+
+[node name="Log4" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.9557, 0.0199131, 28.416)
+visible = false
+
+[node name="Log5" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.7981, 0.0200352, 45.014)
+visible = false
+
+[node name="Log6" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.7861, 0.0200352, 41.4637)
+visible = false
+
+[node name="Log7" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5721, 0.019791, -19.3612)
+visible = false
+
+[node name="Log8" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4045, 0.0199131, -31.4796)
+visible = false
+
+[node name="Log9" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3517, 0.019669, -38.6435)
+visible = false
+
+[node name="Log10" parent="Logs" instance=ExtResource("13_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.646, 0.0199131, -17.8804)
+visible = false
 
 [node name="Candies" type="Node3D" parent="."]
+script = ExtResource("22_pr1ej")
+
+[node name="Candy1" parent="Candies" instance=ExtResource("14_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49064, 0.0139541, -25.8775)
+visible = false
+
+[node name="Candy2" parent="Candies" instance=ExtResource("14_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5806, 0.0138321, 11.2736)
+visible = false
+
+[node name="Candy3" parent="Candies" instance=ExtResource("14_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.9538, 0.0139541, 4.92191)
+visible = false
+
+[node name="Candy4" parent="Candies" instance=ExtResource("14_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.3818, 0.0140762, -35.2433)
+visible = false
+
+[node name="Candy5" parent="Candies" instance=ExtResource("14_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6308, 0.0138321, 43.5818)
+visible = false
+
+[node name="Candy6" parent="Candies" instance=ExtResource("14_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28427, 0.0139541, 9.84938)
+visible = false
+
+[node name="Candy7" parent="Candies" instance=ExtResource("14_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.7851, 0.0139541, -16.7223)
+visible = false
 
 [node name="Home" type="Node3D" parent="."]
 script = ExtResource("19_bhx41")
@@ -996,11 +1118,6 @@ transform = Transform3D(0.0587697, 0, -0.99827, 0, 1, 0, 0.99827, 0, 0.0587697, 
 
 [node name="SpawnTimer" type="Timer" parent="PumpkinSpawnPath"]
 unique_name_in_owner = true
-one_shot = true
-
-[node name="DayTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 60.0
 one_shot = true
 
 [node name="Road" parent="." instance=ExtResource("32_v2yb1")]
@@ -1311,9 +1428,338 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9701, 0.0896675, 3.07194)
 [node name="Plant20" parent="Plants" instance=ExtResource("39_7025r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2382, 0.0896675, -4.52612)
 
+[node name="EndScreen" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Win" type="Node3D" parent="EndScreen"]
+unique_name_in_owner = true
+visible = false
+
+[node name="Fox_vox" type="MeshInstance3D" parent="EndScreen/Win"]
+transform = Transform3D(0.388817, 0, 0.0939211, 0, 0.4, 0, -0.0939211, 0, 0.388817, -44.6055, 0.00012207, -45.6252)
+mesh = ExtResource("43_fedci")
+skeleton = NodePath("../..")
+
+[node name="Log_1" parent="EndScreen/Win" instance=ExtResource("46_458eo")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.01, 0.0199131, -44.5067)
+
+[node name="Log_2" parent="EndScreen/Win" instance=ExtResource("46_458eo")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.7269, 0.0200352, -44.7595)
+
+[node name="Log_3" parent="EndScreen/Win" instance=ExtResource("47_h3rex")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1751, 0.0416915, -45.0962)
+
+[node name="Log_4" parent="EndScreen/Win" instance=ExtResource("46_458eo")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.5753, 0.0199131, -45.0044)
+
+[node name="Log_5" parent="EndScreen/Win" instance=ExtResource("47_h3rex")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.3732, 0.747766, -44.3999)
+
+[node name="Log_6" parent="EndScreen/Win" instance=ExtResource("46_458eo")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.6036, 0.342399, -44.5264)
+
+[node name="Log_7" parent="EndScreen/Win" instance=ExtResource("47_h3rex")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.3453, 0.284896, -43.4674)
+
+[node name="Log_8" parent="EndScreen/Win" instance=ExtResource("46_458eo")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.9629, 0.0199131, -45.11)
+
+[node name="Log_9" parent="EndScreen/Win" instance=ExtResource("47_h3rex")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.0947, 0.38409, -44.8242)
+
+[node name="Log_10" parent="EndScreen/Win" instance=ExtResource("47_h3rex")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.0904, 0.0418136, -44.8013)
+
+[node name="Log_11" parent="EndScreen/Win" instance=ExtResource("46_458eo")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.9096, 0.26324, -44.9687)
+
+[node name="Log_12" parent="EndScreen/Win" instance=ExtResource("47_h3rex")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.6544, 0.384212, -44.8796)
+
+[node name="Log_13" parent="EndScreen/Win" instance=ExtResource("46_458eo")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1806, 0.263028, -45.0524)
+
+[node name="Log_14" parent="EndScreen/Win" instance=ExtResource("47_h3rex")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5032, 0.990971, -44.3096)
+
+[node name="Log_15" parent="EndScreen/Win" instance=ExtResource("46_458eo")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.5544, 0.483179, -44.5474)
+
+[node name="Log_16" parent="EndScreen/Win" instance=ExtResource("47_h3rex")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.1998, 0.990971, -44.4024)
+
+[node name="AcornMesh3" type="MeshInstance3D" parent="EndScreen/Win"]
+transform = Transform3D(0.490575, 0.861582, -0.130434, -0.857829, 0.503808, 0.101525, 0.153186, 0.062084, 0.986245, -42.7493, 0.633789, -45.8976)
+mesh = ExtResource("43_h3rex")
+skeleton = NodePath("../../Lose")
+surface_material_override/0 = SubResource("StandardMaterial3D_8qswn")
+
+[node name="AcornMesh4" type="MeshInstance3D" parent="EndScreen/Win"]
+transform = Transform3D(0.916451, -0.259152, -0.304889, 0.367233, 0.847331, 0.383628, 0.158924, -0.463542, 0.871706, -44.4219, 0.724243, -47.5134)
+mesh = ExtResource("43_h3rex")
+skeleton = NodePath("../../Lose")
+surface_material_override/0 = SubResource("StandardMaterial3D_8qswn")
+
+[node name="AcornMesh5" type="MeshInstance3D" parent="EndScreen/Win"]
+transform = Transform3D(0.97952, 0.184589, -0.0804227, -0.123628, 0.866635, 0.483384, 0.158925, -0.463542, 0.871706, -43.0152, 0.724243, -47.6792)
+mesh = ExtResource("43_h3rex")
+skeleton = NodePath("../../Lose")
+surface_material_override/0 = SubResource("StandardMaterial3D_8qswn")
+
+[node name="AcornMesh6" type="MeshInstance3D" parent="EndScreen/Win"]
+transform = Transform3D(0.440844, 0.823339, 0.357449, -0.883402, 0.327479, 0.335198, 0.158925, -0.463542, 0.871706, -45.4197, 0.539062, -44.2383)
+mesh = ExtResource("43_h3rex")
+skeleton = NodePath("../../Lose")
+surface_material_override/0 = SubResource("StandardMaterial3D_8qswn")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="EndScreen/Win"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.9601, -0.356201, -44.5654)
+amount = 200
+lifetime = 5.0
+preprocess = 2.0
+process_material = SubResource("ParticleProcessMaterial_fedci")
+draw_pass_1 = SubResource("SphereMesh_8qswn")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="EndScreen/Win"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.9601, -0.356201, -44.5654)
+amount = 100
+lifetime = 5.0
+preprocess = 2.0
+process_material = SubResource("ParticleProcessMaterial_8qswn")
+draw_pass_1 = SubResource("SphereMesh_i4re6")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="EndScreen/Win"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.059, 0.68396, -44.8074)
+light_color = Color(1, 0.733333, 0, 1)
+light_energy = 16.0
+
+[node name="Lose" type="Node3D" parent="EndScreen"]
+unique_name_in_owner = true
+visible = false
+
+[node name="AcornMesh2" type="MeshInstance3D" parent="EndScreen/Lose"]
+transform = Transform3D(0.490575, 0.861582, -0.130434, -0.857829, 0.503808, 0.101525, 0.153186, 0.062084, 0.986245, -40.848, 0.633789, -45.8976)
+mesh = ExtResource("43_h3rex")
+surface_material_override/0 = SubResource("StandardMaterial3D_8qswn")
+
+[node name="Skull" type="MeshInstance3D" parent="EndScreen/Lose"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.2706, 0, -44.7238)
+mesh = ExtResource("43_05nbr")
+skeleton = NodePath("../..")
+
+[node name="BoneB" type="MeshInstance3D" parent="EndScreen/Lose"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.239, 0, -43.7)
+mesh = ExtResource("44_0sl42")
+skeleton = NodePath("../../..")
+
+[node name="Log_2" parent="EndScreen/Lose" instance=ExtResource("47_h3rex")]
+process_mode = 4
+transform = Transform3D(0.807048, -0.494215, 0.323148, 0.572904, 0.787905, -0.225801, -0.143015, 0.367365, 0.919016, -38.42, 0, -44.071)
+
+[node name="Log_1" parent="EndScreen/Lose" instance=ExtResource("46_458eo")]
+process_mode = 4
+transform = Transform3D(0.635202, 0, -0.772346, 0, 1, 0, 0.772346, 0, 0.635202, -38.884, 0, -44.322)
+
+[node name="EndCamera" type="Camera3D" parent="EndScreen"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.914797, 0.403913, 0, -0.403913, 0.914797, -40.577, 3.89234, -40.9821)
+fov = 70.0
+
+[node name="WinCanvas" type="CanvasLayer" parent="EndScreen"]
+unique_name_in_owner = true
+visible = false
+
+[node name="Title" type="Label" parent="EndScreen/WinCanvas"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 151.0
+offset_top = -495.0
+offset_right = 988.0
+offset_bottom = -245.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -30
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 80
+text = "you will survive
+the winter!"
+horizontal_alignment = 1
+
+[node name="Acorn2" type="Sprite2D" parent="EndScreen/WinCanvas"]
+position = Vector2(1803, 136.44)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_suyxu")
+
+[node name="Acorn3" type="Sprite2D" parent="EndScreen/WinCanvas"]
+position = Vector2(1234, 136.44)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_suyxu")
+flip_h = true
+
+[node name="HomeButton1" type="Button" parent="EndScreen/WinCanvas"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 309.0
+offset_top = -316.0
+offset_right = 825.0
+offset_bottom = -231.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 60
+text = "main menu"
+
+[node name="LoseCanvas" type="CanvasLayer" parent="EndScreen"]
+unique_name_in_owner = true
+visible = false
+
+[node name="Title" type="Label" parent="EndScreen/LoseCanvas"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 258.0
+offset_top = -495.0
+offset_right = 1095.0
+offset_bottom = -245.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -30
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 80
+text = "you died in
+the winter"
+horizontal_alignment = 1
+
+[node name="HomeButton2" type="Button" parent="EndScreen/LoseCanvas"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 534.0
+offset_top = -316.0
+offset_right = 825.0
+offset_bottom = -231.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 60
+text = "main menu"
+
+[node name="StatCanvas" type="CanvasLayer" parent="EndScreen"]
+unique_name_in_owner = true
+visible = false
+
+[node name="Deposit" type="Panel" parent="EndScreen/StatCanvas"]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 488.0
+offset_top = -179.0
+offset_right = 922.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Branch" type="Sprite2D" parent="EndScreen/StatCanvas/Deposit"]
+position = Vector2(46, 116.44)
+rotation = 1.91114
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("5_sww3w")
+
+[node name="Acorn" type="Sprite2D" parent="EndScreen/StatCanvas/Deposit"]
+position = Vector2(40, 197.44)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_suyxu")
+
+[node name="ESDepositBranch" type="Label" parent="EndScreen/StatCanvas/Deposit"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -351.0
+offset_top = 84.4402
+offset_right = -39.0
+offset_bottom = 159.44
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 60
+text = "0 (30 needed)"
+
+[node name="Title" type="Label" parent="EndScreen/StatCanvas/Deposit"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77.0
+offset_top = 5.0
+offset_right = 77.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 60
+text = "deposit:"
+
+[node name="ESDepositAcorn" type="Label" parent="EndScreen/StatCanvas/Deposit"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -351.0
+offset_top = 166.44
+offset_right = -39.0
+offset_bottom = 241.44
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("16_ssvqc")
+theme_override_font_sizes/font_size = 60
+text = "0 (15 needed)"
+
 [connection signal="spawn_acorn" from="." to="Shop" method="_on_game_spawn_acorn"]
 [connection signal="toggle_player_camera" from="." to="Player" method="_on_game_toggle_player_camera"]
 [connection signal="update_hud" from="." to="HUD" method="_on_game_update_hud"]
+[connection signal="update_positions" from="." to="Logs" method="_on_game_update_positions"]
+[connection signal="update_positions" from="." to="Candies" method="_on_game_update_positions"]
+[connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
+[connection signal="timeout" from="DayTimer" to="Player" method="_on_day_timer_timeout"]
 [connection signal="exit_to_main_menu" from="PauseMenu" to="." method="_on_pause_menu_exit_to_main_menu"]
 [connection signal="pressed" from="PauseMenu/Panel/ContinueButton" to="PauseMenu" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Panel/MainMenuButton" to="PauseMenu" method="_on_main_menu_button_pressed"]
@@ -1335,3 +1781,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2382, 0.0896675, -4.52612)
 [connection signal="body_entered" from="Home/HomeArea" to="Home" method="_on_home_area_body_entered"]
 [connection signal="body_exited" from="Home/HomeArea" to="Home" method="_on_home_area_body_exited"]
 [connection signal="timeout" from="PumpkinSpawnPath/SpawnTimer" to="PumpkinSpawnPath" method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="EndScreen/WinCanvas/HomeButton1" to="PauseMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="EndScreen/LoseCanvas/HomeButton2" to="PauseMenu" method="_on_main_menu_button_pressed"]

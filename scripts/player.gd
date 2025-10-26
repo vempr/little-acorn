@@ -7,14 +7,15 @@ signal player_died
 var mouse_sensitivity := 0.001
 var twist_input := 0.0
 var pitch_input := 0.0
-var move_force := 4000.0
+var move_force := 3000.0
 var can_open_shop := false
 var is_holding_acorn := false
 var acorn
+var day_is_over := false
 
 
 func _physics_process(delta: float) -> void:
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED && !day_is_over:
 		var input = Vector3.ZERO
 		input.x = Input.get_axis("left", "right")
 		input.z = Input.get_axis("forward", "backward")
@@ -57,8 +58,8 @@ func _physics_process(delta: float) -> void:
 			acorn.is_being_held = false
 			acorn = null
 			return
-
-		acorn.position = position + Vector3(0, 1.5, 0)
+		
+		acorn.global_position = global_position + Vector3(0, 1.5, 0)
 	
 	if %PickableCast.is_colliding():
 		var collider = %PickableCast.get_collider()
@@ -89,9 +90,10 @@ func _physics_process(delta: float) -> void:
 			if "pickable_type" in node:
 				if Input.is_action_just_pressed("pick_up"):
 					GAME.inventory[node.pickable_type] += 1
-					node.queue_free()
+					node.visible = false
+					node.process_mode = Node.PROCESS_MODE_DISABLED
 					update_hud.emit()
-	
+
 
 
 func _input(event: InputEvent) -> void:
@@ -126,3 +128,7 @@ func _on_game_toggle_player_camera(is_on) -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+
+func _on_day_timer_timeout() -> void:
+	day_is_over = true

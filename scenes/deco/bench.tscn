@@ -5,10 +5,10 @@
 [ext_resource type="ArrayMesh" uid="uid://ctrpocv0j6jdb" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/bench_decorated.obj" id="2_0oijs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lpsly"]
-size = Vector3(1.92383, 1.76348, 0.677734)
+size = Vector3(1.92383, 0.604614, 0.677734)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u74j8"]
-size = Vector3(1.94678, 1.76348, 0.671875)
+size = Vector3(1.94678, 0.579006, 0.671875)
 
 [node name="Bench" type="Node3D"]
 script = ExtResource("1_u74j8")
@@ -22,7 +22,7 @@ mesh = ExtResource("1_ol4n6")
 [node name="StaticBody3D" type="StaticBody3D" parent="BenchBasic"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BenchBasic/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013, 0.75759, -0.00268555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013, 0.178157, -0.00268555)
 shape = SubResource("BoxShape3D_lpsly")
 
 [node name="BenchDecorated" type="MeshInstance3D" parent="."]
@@ -34,7 +34,7 @@ mesh = ExtResource("2_0oijs")
 [node name="StaticBody3D" type="StaticBody3D" parent="BenchDecorated"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BenchDecorated/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00299023, 0.75759, -0.00268555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00299023, 0.165353, -0.00268555)
 shape = SubResource("BoxShape3D_u74j8")
 
 [node name="BenchPreview" type="MeshInstance3D" parent="."]

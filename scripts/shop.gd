@@ -18,5 +18,5 @@ func _on_buy_area_body_exited(body: Node3D) -> void:
 func _on_game_spawn_acorn() -> void:
 	%AcornPathFollow.progress_ratio = randf()
 	var acorn = AcornScene.instantiate()
-	acorn.position = %AcornPathFollow.position
-	add_child(acorn)
+	acorn.global_position = %AcornPathFollow.global_position
+	get_parent().add_child(acorn)
