@@ -30,84 +30,86 @@ size = Vector3(0.616211, 0.413452, 0.614258)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_qdl88")
 
-[node name="PumpkinOrange" type="MeshInstance3D" parent="."]
+[node name="PumpkinOrange" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
+
+[node name="PoM" type="MeshInstance3D" parent="PumpkinOrange"]
 mesh = ExtResource("2_ch6vm")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinOrange"]
-
-[node name="PoCS" type="CollisionShape3D" parent="PumpkinOrange/StaticBody3D"]
+[node name="PoCS" type="CollisionShape3D" parent="PumpkinOrange"]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.00848e-09, 0.290421, 0)
 shape = SubResource("BoxShape3D_wx4lb")
 disabled = true
 
-[node name="PumpkinOrangeJackolantern" type="MeshInstance3D" parent="."]
+[node name="PumpkinOrangeJackolantern" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 visible = false
+
+[node name="PojM" type="MeshInstance3D" parent="PumpkinOrangeJackolantern"]
 mesh = ExtResource("3_8p3yo")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinOrangeJackolantern"]
-
-[node name="PojCS" type="CollisionShape3D" parent="PumpkinOrangeJackolantern/StaticBody3D"]
+[node name="PojCS" type="CollisionShape3D" parent="PumpkinOrangeJackolantern"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520081, -0.0214844)
 shape = SubResource("BoxShape3D_fnlu4")
 disabled = true
 
-[node name="PumpkinOrangeSmall" type="MeshInstance3D" parent="."]
+[node name="PumpkinOrangeSmall" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 visible = false
-mesh = ExtResource("4_2inn6")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinOrangeSmall"]
-
-[node name="PosCS" type="CollisionShape3D" parent="PumpkinOrangeSmall/StaticBody3D"]
+[node name="PosCS" type="CollisionShape3D" parent="PumpkinOrangeSmall"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.201752, 0)
 shape = SubResource("BoxShape3D_r4v7c")
 disabled = true
 
-[node name="PumpkinYellow" type="MeshInstance3D" parent="."]
+[node name="PosM" type="MeshInstance3D" parent="PumpkinOrangeSmall"]
+mesh = ExtResource("4_2inn6")
+skeleton = NodePath("../..")
+
+[node name="PumpkinYellow" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 visible = false
-mesh = ExtResource("5_kanjq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinYellow"]
-
-[node name="PyCS" type="CollisionShape3D" parent="PumpkinYellow/StaticBody3D"]
+[node name="PyCS" type="CollisionShape3D" parent="PumpkinYellow"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265747, 0)
 shape = SubResource("BoxShape3D_s1f5v")
 disabled = true
 
-[node name="PumpkinYellowJackolantern" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+[node name="PyM" type="MeshInstance3D" parent="PumpkinYellow"]
 visible = false
+mesh = ExtResource("5_kanjq")
+skeleton = NodePath("../..")
+
+[node name="PumpkinYellowJackolantern" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="PyjM" type="MeshInstance3D" parent="PumpkinYellowJackolantern"]
 mesh = ExtResource("6_4siox")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinYellowJackolantern"]
-
-[node name="PyjCS" type="CollisionShape3D" parent="PumpkinYellowJackolantern/StaticBody3D"]
+[node name="PyjCS" type="CollisionShape3D" parent="PumpkinYellowJackolantern"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.549774, 0)
 shape = SubResource("BoxShape3D_qys4q")
 disabled = true
 
-[node name="PumpkinYellowSmall" type="MeshInstance3D" parent="."]
+[node name="PumpkinYellowSmall" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 visible = false
-mesh = ExtResource("7_wx4lb")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="PumpkinYellowSmall"]
-
-[node name="PysCS" type="CollisionShape3D" parent="PumpkinYellowSmall/StaticBody3D"]
+[node name="PysCS" type="CollisionShape3D" parent="PumpkinYellowSmall"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.202087, 0)
 shape = SubResource("BoxShape3D_ye8ba")
 disabled = true
+
+[node name="PysM" type="MeshInstance3D" parent="PumpkinYellowSmall"]
+mesh = ExtResource("7_wx4lb")
+skeleton = NodePath("../..")

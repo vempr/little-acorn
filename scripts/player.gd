@@ -112,3 +112,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_shop_update_shop_visibility(isVisible: bool) -> void:
 	can_open_shop = isVisible
+
+
+func _on_pumpkin_area_body_entered(body: Node3D) -> void:
+	if "is_a_pumpkin" in body.get_parent():
+		visible = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		call_deferred("stop")
+
+
+func stop() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
