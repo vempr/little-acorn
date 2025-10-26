@@ -119,6 +119,10 @@ func stop() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 
-func _on_game_toggle_player_camera() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	%Camera.current = true
+func _on_game_toggle_player_camera(is_on) -> void:
+	%Camera.current = is_on
+	
+	if is_on:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

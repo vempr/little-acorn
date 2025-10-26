@@ -1,0 +1,142 @@
+[gd_scene load_steps=3 format=3 uid="uid://duaby66h53nal"]
+
+[ext_resource type="Script" uid="uid://5bbx7gqgjp6w" path="res://scripts/road.gd" id="1_my2y2"]
+[ext_resource type="ArrayMesh" uid="uid://b2sjy3mhuprwn" path="res://assets/KayKit_HalloweenBits_1.0_FREE/Assets/obj/path_A.obj" id="2_fy6l0"]
+
+[node name="Road" type="Node3D"]
+script = ExtResource("1_my2y2")
+
+[node name="PathA" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 7.01581, -0.000244141, 47.7403)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, 43.9429)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 7.01581, -0.000244141, 40.06)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA4" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, 36.2625)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA5" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, 32.3502)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA6" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, 28.5527)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA7" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, 24.6698)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA8" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, 20.8724)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA9" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, 17.1262)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA10" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, 13.3288)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA11" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, 9.44584)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA12" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, 5.64841)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA13" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, 1.73604)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA14" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, -2.06139)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA15" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, -5.94432)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA16" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.01581, -0.000244141, -9.74175)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA17" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 37.615, -0.000244141, -9.60562)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA18" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 33.8176, -0.000244141, -9.62146)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA19" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 29.9347, -0.000244141, -9.63766)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA20" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 26.1373, -0.000244141, -9.6535)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA21" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 22.2249, -0.000244141, -9.66982)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA22" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 18.4275, -0.000244141, -9.68566)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA23" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 14.5446, -0.000244141, -9.70186)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA24" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 10.7472, -0.000244141, -9.7177)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA30" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 49.199, -0.000244141, -9.68566)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA31" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 45.3161, -0.000244141, -9.70186)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")
+
+[node name="PathA32" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 41.5187, -0.000244141, -9.7177)
+mesh = ExtResource("2_fy6l0")
+skeleton = NodePath("../..")

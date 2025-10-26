@@ -3,6 +3,7 @@ extends Node3D
 
 func _ready() -> void:
 	%TreeDeadLarge.visible = false
+	rotation.y = randf_range(0, 2)
 	
 	match randi_range(0, get_child_count() - 1):
 		0:

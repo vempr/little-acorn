@@ -2,7 +2,7 @@ extends Node3D
 
 signal update_hud
 signal spawn_acorn
-signal toggle_player_camera
+signal toggle_player_camera(is_on: bool)
 
 
 func _ready() -> void:
@@ -54,9 +54,14 @@ func _on_player_player_died() -> void:
 
 
 func _on_hud_restart_game() -> void:
-	GAME.started = false
 	await Fade.fade_out().finished
+	
+	get_tree().paused = false
 	GAME.reset_everything()
+	GAME.started = false
+	%MMCamera.current = true
+	toggle_player_camera.emit(false)
+	
 	get_tree().reload_current_scene()
 	Fade.fade_in()
 
@@ -65,7 +70,7 @@ func _on_main_menu_start_game() -> void:
 	await Fade.fade_out().finished
 	
 	%MMCamera.current = false
-	toggle_player_camera.emit()
+	toggle_player_camera.emit(true)
 	%MainMenu.visible = false
 	%MMCanvas.visible = false
 	%Player.visible = true

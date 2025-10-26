@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy7a702qw3a30"]
+
+[ext_resource type="Script" uid="uid://ba1840qeaxrwi" path="res://scripts/deco/bush.gd" id="1_p5yij"]
+[ext_resource type="PackedScene" uid="uid://2woet6wvmqi4" path="res://scenes/deco/bushes/bush_1.tscn" id="1_sebb8"]
+[ext_resource type="PackedScene" uid="uid://co64th45rfvip" path="res://scenes/deco/bushes/bush_2.tscn" id="2_kp461"]
+[ext_resource type="PackedScene" uid="uid://bq5rr3mujb8ei" path="res://scenes/deco/bushes/bush_3.tscn" id="3_p5yij"]
+
+[node name="Bush" type="Node3D"]
+script = ExtResource("1_p5yij")
+
+[node name="Bush_1" parent="." instance=ExtResource("1_sebb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Bush_2" parent="." instance=ExtResource("2_kp461")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+
+[node name="Bush_3" parent="." instance=ExtResource("3_p5yij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false

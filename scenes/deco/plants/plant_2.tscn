@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds8kj2dmf71ka"]
+
+[ext_resource type="PackedScene" uid="uid://7u0e0m7hrxgh" path="res://assets/LowPoly Environment Pack/Plant_3.fbx" id="1_oiumy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oiumy"]
+albedo_color = Color(0.883333, 1, 0, 1)
+
+[node name="Plant_2" instance=ExtResource("1_oiumy")]
+
+[node name="Plant_3" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_oiumy")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://dc4rurpg2yvrc"]
+
+[ext_resource type="Script" uid="uid://ebe71olsswh" path="res://scripts/deco/plant.gd" id="1_rb0bc"]
+[ext_resource type="PackedScene" uid="uid://dv20ouedsx6k4" path="res://assets/LowPoly Environment Pack/Plant_4.fbx" id="4_fsr8w"]
+[ext_resource type="PackedScene" uid="uid://dyi12hdoo8byh" path="res://scenes/deco/plants/plant_1.tscn" id="4_j0hs4"]
+[ext_resource type="PackedScene" uid="uid://ds8kj2dmf71ka" path="res://scenes/deco/plants/plant_2.tscn" id="5_rb0bc"]
+[ext_resource type="PackedScene" uid="uid://88xpjejpomeo" path="res://assets/LowPoly Environment Pack/Plant_6.fbx" id="6_1oxim"]
+[ext_resource type="PackedScene" uid="uid://dvp0cyropg7re" path="res://scenes/deco/plants/plant_4.tscn" id="6_rosma"]
+[ext_resource type="PackedScene" uid="uid://c1li274urogop" path="res://assets/LowPoly Environment Pack/Plant_7.fbx" id="7_jnx0w"]
+
+[node name="Plant" type="Node3D"]
+script = ExtResource("1_rb0bc")
+
+[node name="Plant_3" parent="." instance=ExtResource("4_fsr8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="Plant_6" parent="." instance=ExtResource("6_1oxim")]
+visible = false
+
+[node name="Plant_5" parent="." instance=ExtResource("7_jnx0w")]
+visible = false
+
+[node name="Plant_1" parent="." instance=ExtResource("4_j0hs4")]
+
+[node name="Plant_2" parent="." instance=ExtResource("5_rb0bc")]
+visible = false
+
+[node name="Plant_4" parent="." instance=ExtResource("6_rosma")]
+visible = false
