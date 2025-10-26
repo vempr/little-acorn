@@ -237,6 +237,7 @@ one_shot = true
 
 [node name="LeavesParticles" type="GPUParticles3D" parent="Particles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.002, 0)
+visible = false
 amount = 800
 amount_ratio = 0.7
 lifetime = 8.0
